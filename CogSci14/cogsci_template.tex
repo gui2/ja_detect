@@ -11,17 +11,15 @@
 \usepackage{ wasysym }
 \usepackage{times}
 \usepackage{epsfig}
+\usepackage{tabularx}
 
 
 \usetikzlibrary{decorations.pathreplacing,calc}
 \title{Discovering the perceptual signatures of Joint Attention}
  
-\author{{\large \bf Morton Ann Gernsbacher (MAG@Macc.Wisc.Edu)} \\
-  Department of Psychology, 1202 W. Johnson Street \\
-  Madison, WI 53706 USA
-  \AND {\large \bf Sharon J. Derry (SDJ@Macc.Wisc.Edu)} \\
-  Department of Educational Psychology, 1025 W. Johnson Street \\
-  Madison, WI 53706 USA}
+\author{{\large \bf Guido Pusiol, Michael Frank, Fei-Fei Li, Laura Soriano} \\
+  \AND { Stanford .. Blah Blah} \\
+}
   
 \newcommand{\argmax}[1]{\underset{#1}{\operatorname{arg}\,\operatorname{max}}\;}
 \begin{document}
@@ -226,6 +224,30 @@ The columns of $D$ are the $k$ hyper-features composing describing the existence
 %The parameter $k$ of $\Gamma_{k}$ is manually selected. We aim at learning regions and sub-regions. We build 3 $\Gamma$ to categorize the scene regions. Variating $k$ we can build a coarse ($\Gamma_{k=5}$), a medium ($\Gamma_{k=10}$), and a finer ($\Gamma_{k=15}$) topologies. An example of three $\Gamma$s is shown in figure \ref{fig:TOPO}. Finally, the hierarchical configuration is intended to address the problem of finding the right number of clusters (or regions). We allow some over clustering in individual topologies as long as all interesting regions are represented in some part of the topologies.
 
 \section{Evaluation}
+First order analytics can be extracted of the alignment of the automatic feature detection and the annotations. We map into the video timeline the video segments annotated as JA episode and the face and moving object detection. From the alignment, we compute the percentage of time of the automatic detection occurring inside and outside the manually annotated JA episode. We have performed this for a total 77,825 video frames of 4 different children.  Table 
+\begin{table}
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+\cline{2-6}
+\multicolumn{1}{c}{} & \multicolumn{5}{c}{{\bf First order feature analysis}} 
+\\
+\cline{2-6}
+\multicolumn{1}{c|}{} &\%Faces IN & \%Faces OUT & \%Toy IN & \% Toy OUT & Total frames\\
+\hline\\[-1.2em]\hline
+Child 0807 &  19\%        & 4\%    &  85\%  &  $<$ 0\%& 19284\\
+\hline\
+Child 0815 &   21\%       & 5\%    &  51\%   &$<$ 0\%& 22421\\
+\hline\
+Child 1604 &   29\%       & 16\%  &  44\%   & $<$ 0\%  & 19337\\
+\hline\
+Child 0801 &   8\%         &  4\%   &  11\%   & 11\%  & 16783\\
+\hline
+\end{tabular}
+\caption{The table shows the percentage (normalized by time) of detected faces and handled object inside and outside a JA episode. The distribution of faces and handled object is dense inside the JA episode showing that those features are indicators of a JA episode.}
+\label{tb:Results2}
+\end{table}
+
+
 \subsection{Dataset}
 \subsection{Evaluation Metrics}
 \subsection{Results}
