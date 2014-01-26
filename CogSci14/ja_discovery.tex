@@ -2,26 +2,32 @@
 \usepackage{graphicx}
 \usepackage{cogsci}
 \usepackage{pslatex}
-\usepackage{apacite}
+\usepackage{apacite2}
 \usepackage{subfigure}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{tikz}
-\usepackage{ marvosym }
-\usepackage{ wasysym }
+\usepackage{marvosym}
+\usepackage{wasysym}
 \usepackage{times}
 \usepackage{epsfig}
 
 
 \usetikzlibrary{decorations.pathreplacing,calc}
-\title{Discovering the perceptual signatures of Joint Attention}
+\title{Discovering the Perceptual Signatures of Joint Attention}
  
-\author{{\large \bf Morton Ann Gernsbacher (MAG@Macc.Wisc.Edu)} \\
-  Department of Psychology, 1202 W. Johnson Street \\
-  Madison, WI 53706 USA
-  \AND {\large \bf Sharon J. Derry (SDJ@Macc.Wisc.Edu)} \\
-  Department of Educational Psychology, 1025 W. Johnson Street \\
-  Madison, WI 53706 USA}
+\author{{\bf Guido Pusiol} \\ 
+\texttt{gpusiol@stanford.edu} \\
+  Department of Psychology\\
+Stanford University
+  \And {\bf Laura Soriano} \\ 
+\texttt{lsoriano@stanford.edu} \\
+  Department of Psychology\\
+Stanford University
+\And {\bf Michael C. Frank} \\ 
+\texttt{mcfrank@stanford.edu} \\
+  Department of Psychology\\
+Stanford University}
   
 \newcommand{\argmax}[1]{\underset{#1}{\operatorname{arg}\,\operatorname{max}}\;}
 \begin{document}
@@ -30,11 +36,28 @@
 \begin{abstract}
 
 \textbf{Keywords:} 
-Joint attention. Computer vision. Children development. 
+Joint attention; computer vision; child development; social cognition. 
 \end{abstract}
 
 \section{Introduction}
-What is it like to be a baby? Lab experiments allow researchers to ask focused questions about children’s social development, but experiments often leave us ignorant about children’s social  input in their day-to-day life. Recent technical improvements such as light-weight cameras offer the opportunity to go beyond this previous work and measure what children actually see,  but analyzing idiosyncratic records of a child’s experience is at best slow and labor-intensive. Our project aims to develop robust tools for analyzing video data from the child’s first person perspective.\\
+
+How do young children begin learning the meanings of words? Across cultures, early vocabulary includes names for people, simple social routines, animals, and objects \cite{tardif2008}, suggesting that the earliest words are learned through interaction and play with others \cite{bruner1985}.  Identifying a caregiver's intended referent is a critical part of learning meaning within these interactions, and this identification is often accomplished through \emph{joint attention}.
+
+Joint attention describes periods of time when both child and caregiver are attending to the same thing and when both know that the other is attending to it \cite<for the remainder of the paper we will talk informally about joint attention---JA---as both the phenomenon and the period of time during which it happens;>{carpenter2011}.  A typical example of JA is a situation where an adult and child are playing with a toy and the infant alternates gaze between the adult and the toy \cite{carpenter1998}. 
+
+The capacity for JA gradually develops over the first two years of life and usually begins to emerge between 9 and 12 months of age \cite{morales2000}, coinciding with the beginnings of language learning. In addition, the skills that enable JA (e.g. pointing, following a caregiver's gaze to a distal target) and the amount of time that children spend in JA with their caregivers are both strong predictors of children's early vocabulary growth \cite{carpenter1998,brooks2008,tomasello1983}. 
+
+How do children know that they are in joint attention with a caregiver? From an external perspective, joint attention has typically been defined by a sequence of events: (1) one member of the interaction (child or caregiver) directs the other member‚Äôs attention to an object, (2) both members focus visually on the object, and (3) the child indicates awareness of the caregiver  \cite{tomasello1986}. 
+
+Previous work has typically used children's gaze as the main indicator of JA, but, from the child's perspective, this method has several issues. First, gaze is neither necessary nor sufficient for JA. It is possible to attend jointly through the hands---as with a child reading a picturebook on a parent's lap, or for the child to follow gaze to a distal target and then signal awareness by moving towards it or reaching for it. Indeed, eye-tracking studies investigating signals to reference find that manual signals are far more effective than gaze in manipulating young children's attention \cite{yurovsky2013}. Second, young children may not have perceptual access to their caregiver's gaze most of the time. Recent studies using head-mounted cameras and eye-trackers suggest that children are more often looking at the objects in front of them than at the faces of their caregivers \cite{smith2011,franchak2011,frank2013}. Third, parents most often look at their children, not at the object they are talking about \cite{frank2013b}. Thus, gaze alone is at best a noisy cue for JA.
+
+The goal of our current work is to understand what kinds of other perceptual signatures signal joint attention. For this purpose, we use two data sources: both head-mounted and fixed camera videos. Our approach is unsupervised discovery. We first use computational methods to extract a number of different features---including episodes of static attention, faces, and objects that are currently in motion. We then  examine the correlations between these features (and higher-level clusters of these features) and hand-coded joint attentional episodes. Our results suggest that there are a number of redundant perceptual cues to JA, and that some of these may be more robust and readily accessible to children than gaze.
+
+% The first stage, aims at detecting different type of features (i.e. {\bf faces, objects}) extracted frame by frame in the fixed camera information. The objects are the mutually attended ones. In general these objects are being handled and therefore they are moving. For each video frame our algorithm computes a motion mask and tracks the moving object by its color histogram. Over the extracted motion mask the object of interest is tracked using a Mean-Shift based color tracker.  Another feature are √íattention chunks√ì, which are the segments of the child's head mounted video attending visually to the same concept (object, person, etc.). We detect an √íattention chunk√ì by tracking a similar pixel texture over consecutive video frames.\\
+
+% The second stage,  combines the previous features as input of an automatic learning algorithm that can describe the salient combinations for the detection of joint attention. The algorithm can be seen as a deep learning technique that builds a two layer network of feature clusters.\\ 
+
+
 \begin{figure}[h]
      \begin{center}
         \subfigure[todo]{%
@@ -47,20 +70,18 @@ What is it like to be a baby? Lab experiments allow researchers to ask focused q
    \label{fig:main}
 \end{figure}
 
-%The detection of faces in a child’s perspective is key in describing social interactions while learning. We need to detect and annotate faces at each video frame of our big-data corpus. In order to effectively minimize the participation of human in the annotation loop, our computer system need to detect faces with high precision and recall (ideally above 90\%). Current face detectors perform well when used in the right configuration (full faces at >1 meters away). In our setting, traditional face detectors fall short to replace the human annotator (precision and recall are below 75\%). The problem is that the parent-child interactions are in a closer spatial proximity, producing that only partial faces are appearing in the video. To solve the problem, we have implemented an algorithm detects and tracks partial faces over sequential video frames. The algorithm works in a semi-supervised fashion. The human provides a single training patch (i.e. a nose), and the algorithm will track the patch and actively learn new training examples (e.g. variations of the nose) on the fly. Our evaluation compares the automatically detected faces with human ground truth annotations. The metrics: 1) Precision = 92\%, 2) Recall = 99\% 3) True Negatives = 93\%, 4) Accuracy = 96\% are unprecedented and can be used in combination with the child’s posture to better understand the effects of self motility in word learning.\\
+\section{Data}
 
-An important and not yet fully formalized child-caregiver interaction comes in the shape of joint attention. Joint attention can be seen as the event of two individuals sharing the attention into a third object with mutual awareness of that fact. The detection of a joint attention episode is a strong indicator of learning. Nevertheless, the “mutual awareness” is perceptually hard for humans to observe. We are addressing the problem in a data driven fashion. Our bottom up approach aims at combining different indicators of “mutual awareness” to detect joint attention. The goal of this paper is the mining of the importance of different features combinations for Joint attention recognition.  
+\subsection{Videos}
 
 
-The method uses synchronized head mounted and fixed camera videos and it is composed of different stages.\\
+\subsection{Annotation}
 
-The first stage, aims at detecting different type of features (i.e. {\bf faces, objects}) extracted frame by frame in the fixed camera information. The objects are the mutually attended ones. In general these objects are being handled and therefore they are moving. For each video frame our algorithm computes a motion mask and tracks the moving object by its color histogram. Over the extracted motion mask the object of interest is tracked using a Mean-Shift based color tracker.  Another feature are “attention chunks”, which are the segments of the child’s head mounted video attending visually to the same concept (object, person, etc.). We detect an “attention chunk” by tracking a similar pixel texture over consecutive video frames.\\
+Episodes of joint attention were coded using the program OpenShapa. Joint attention was defined if it satisfied the criteria by Tomasello and Todd (1983). First, the interaction had to begin with either the parent or child initiating the interaction. For example, a parent could hold up an object and label it, or a child could bring an object over the parent. Second, both members focus on the single object for at least 3 seconds (including brief glances away). Third, at some point during the interaction the child must display an overt behavior towards the parent to show that he is aware of the interaction. 
 
-The second stage,  combines the previous features as input of an automatic learning algorithm that can describe the salient combinations for the detection of joint attention. The algorithm can be seen as a deep learning technique that builds a two layer network of feature clusters.\\ 
 
-%The mask is computed by a multi-layer background subtraction technique, which takes advantages of local texture features represented by local binary patterns (LBP) and photometric invariant color measurements in RGB color space. Over the extracted motion mask the object of interest is tracked using a Mean-Shift based color tracker. %The tracker uses as input an example of the object color histogram. Our preliminary evaluation compares human annotations and the automatic detection of the attended object. For example, for objects such as a brush and a Zem the precision is 75\%.\\
+% An interaction was considered an ‚Äúepisode of joint attention‚Äù if it consisted of three components: an initiation, response, and termination. The initiation of joint attention was defined as when one member of the interaction directed the other‚Äôs attention towards a specific object. These interactions could be parent directed (labeled p). For example a parent could hold an object up in front of a child‚Äôs face while labeling it. Initiations could also be child directed (c), as a child could show an object to her parent, or the child could start playing with an object and the parent subsequently comments on the object. Second, there must be a response to this initiation. One member must respond by displaying an overt behavior that clearly indicates he is aware of the interaction. For example a child can look at the adult‚Äôs face. Third, the interaction must end with one member terminating the episode of joint attention. Additionally the entire interaction must consist of both members alternating focus between the object and the other person for at least three seconds (including momentary glances away). 
 
-%The second stage aims at detecting “attention chunks”, which are the segments of the child’s video attending visually to the same concept (object, person, etc.). We detect an “attention chunk” by tracking a similar pixel texture over consecutive video frames. We implemented an algorithm that initializes a new chunk; each time the tracked texture disappears (i.e. the child focuses on a new object). We evaluate the changes over age of the length of the attention chunks. We compare 6, 12 and 18 month old attention chunks. In total 36 children are observed for about 20 minutes each. The results show that 6 and 12 month old attend to an object for a similar period of time (average 0.43 seconds), while an 18 month old does it for a longer duration (average 1.1 second). Currently, we are analyzing the relationship of the obtained results and the child’s walking capabilities.\\
 
 
 
@@ -133,7 +154,7 @@ where $\beta \in [0,1)$ is the learning rate of the min and max color vectors an
 \\
 After the update step, all nodes are sorted decreasingly according to their weight. And the background modes are the first $B^{t}$ modes that satisfy:
 \begin {equation}\sum_{k=1}^{B^{t}} w_{k}^{t} / \sum_{k=1}^{K^{t}} w_{k}^{t} < TB \end{equation} where $TB  \in [0,1]$ is the background threshold.
-Note that the use of both color and texture, the chances that moving foreground objects generate a consistent mode overtime (and beneﬁciate from this effect) are quite small.\\
+Note that the use of both color and texture, the chances that moving foreground objects generate a consistent mode overtime (and bene√ûciate from this effect) are quite small.\\
 %%%%%%%%%%%%%%%Object tracking
 
 {\bf 2.2 Object tracking}. We are interested in detecting a tracking a set of objects (i.e. toys) components of triad when the parents and children are engaged in a JA episode. In particular the toys are being handled. The detection and tracking objects is performed over the foreground image. From a computer vision perspective, the objects are highly deformable making them hard to detect and track. The deformations are due to the changes of positions and hand-object occlusions that the object can take while is being manipulated. We have tried different appearance-based \cite{TLD} object detectors, and all of them failed. We have finally adopted to detect and track them by its color and relative size. We modified the cam-shift algorithm \cite{bradsky}, which is a specialization of  the well known mean-shift algorithm \cite{Meer2002}. The mean shift algorithm is a non-parametric technique that climbs the gradient of a probability distribution to find the nearest dominant mode (peak). In our case the distribution is based in color values. The algorithm initializes selecting a region containing the object of interest, and building a color histogram over the region. In a new frame, the algorithm will match the region size and the peaks of the color distribution using mean-shift and the euclidean distance. The figure \ref{fig:track} depicts examples of the detection and tracking of two different objects.\\
@@ -226,9 +247,10 @@ The columns of $D$ are the $k$ hyper-features composing describing the existence
 %The parameter $k$ of $\Gamma_{k}$ is manually selected. We aim at learning regions and sub-regions. We build 3 $\Gamma$ to categorize the scene regions. Variating $k$ we can build a coarse ($\Gamma_{k=5}$), a medium ($\Gamma_{k=10}$), and a finer ($\Gamma_{k=15}$) topologies. An example of three $\Gamma$s is shown in figure \ref{fig:TOPO}. Finally, the hierarchical configuration is intended to address the problem of finding the right number of clusters (or regions). We allow some over clustering in individual topologies as long as all interesting regions are represented in some part of the topologies.
 
 \section{Evaluation}
-\subsection{Dataset}
+
 \subsection{Evaluation Metrics}
 \subsection{Results}
+
 \section{Conclusions}
 
 \bibliographystyle{apacite}
@@ -236,5 +258,5 @@ The columns of $D$ are the $k$ hyper-features composing describing the existence
 \setlength{\bibleftmargin}{.125in}
 \setlength{\bibindent}{-\bibleftmargin}
 
-\bibliography{bibio}
+\bibliography{ja}
 \end{document}
