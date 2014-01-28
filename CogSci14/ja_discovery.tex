@@ -92,9 +92,6 @@ Episodes of joint attention were coded using the program OpenShapa. Joint attent
 
 % An interaction was considered an “episode of joint attention” if it consisted of three components: an initiation, response, and termination. The initiation of joint attention was defined as when one member of the interaction directed the other’s attention towards a specific object. These interactions could be parent directed (labeled p). For example a parent could hold an object up in front of a child’s face while labeling it. Initiations could also be child directed (c), as a child could show an object to her parent, or the child could start playing with an object and the parent subsequently comments on the object. Second, there must be a response to this initiation. One member must respond by displaying an overt behavior that clearly indicates he is aware of the interaction. For example a child can look at the adult’s face. Third, the interaction must end with one member terminating the episode of joint attention. Additionally the entire interaction must consist of both members alternating focus between the object and the other person for at least three seconds (including momentary glances away). 
 
-
-
-
 \section{Features Computation}
 %%%%%% FIGURE FACE DETECTION
 {\bf 1. Face Detection.} Traditional off-the-shelf face detection algorithms fall short to detect the parent faces in the baby-cam dataset. Face detectors work accurately when the test dataset present low variability on the testing dataset and the distance is above 1 meter (e.g. Facebook like pictures). In the baby perspective other type of face configurations appear. Faces appear partially, blurred and with big size and texture variability (fig. \ref{fig:faces}) making their detection challenging. We address the problem by with a semi automated adaptive algorithm \cite{kalal}. The algorithm requires manual user input (selecting a face example per video) for its initialization, but then needed no additional training data. The algorithm uses new pixel patches in the trajectory of an optical-flow based tracker to train and update a face detector. The optical flow tracker and the face detector work in parallel. If the face detector finds a location in a new frame exhibiting a high similarity to its stored template, the tracker is re-initialised on that location. Otherwise, the tracker uses the optical flow to decide the location of a face in the new frame. The primary advantage of the algorithm is the use of motion for face detection: Following the movement of the pixels that define a face it is possible for the algorithm to adapt to new morphologies (i.e. different face poses).
@@ -225,37 +222,38 @@ In the previous sections we detected and computed features (faces, objects, etc.
 
 {\bf 3.3. Binarization} The features are binarized for normalization purposes. The features representing a detection (i.e. face and objects) event, are binary by definition. The features representing motion and length are binarized using the median of all observed values as their threshold.\\
 
-\subsection{Mining the Features}
-Our training set is an array of feature vectors $F = \{x^{(1)} \dots x^{(m)}\}$. Each $x^{(i)}$ represents a binary code of the detected features. We feed $F$ to a two layer clustering network composed in the following way: 
-
-In the {\bf first layer}, we learn a dictionary $D_{a} \in \mathbb{R}^{n \times k}$ of $k$ vectors so that a data vector $x^{(i)} \in \mathbb{R}^{n}$ where $i =1, \dots, m$ can be associated to a code vector $s^{(i)}$:
-\begin{equation*}
-\begin{aligned}
-& \underset{D_{a},s}{\text{minimize}}
-& &\sum_{i} ||D_{a}s^{(i)} - x^{(i)}||_{2}^{2}\\
-& \text{subject to}
-& & ||s^{(i)}||_{0} \leq 1, \forall i \\
-& \text{and}
-& & ||D_{a}^{(j)}||_{2} = 1, \forall j % \; i = 1, \ldots, m.
-\end{aligned}
-\end{equation*}
-where $D_{a}^{(j)}$ is the $j'$th column of $D_{a}$. The {\bf second layer} takes as input the columns of $D_a$ for $a=1,\dots, n$ training agents. We learn a new dictionary $D \in \mathbb{R}^{2  \times k}$ of $k$ vectors so that a data vector $D_{a}^{(i)} \in \mathbb{R}^{2}$ where $i =1, \dots, k$, and  $a =1, \dots, n$ can be mapped to a code vector $s^{(i)}$:
-\begin{equation*}
-\begin{aligned}
-& \underset{D_{a},s}{\text{minimize}}
-& &\sum_{i} ||Ds^{(i)} - D_{a}^{(i)}||_{2}^{2}
-&  & & a = 1,\dots, n\\
-& \text{subject to}
-& & ||s^{(i)}||_{0} \leq 1, \forall i \\% \; i = 1, \ldots, m.We propose to le
-& \text{and}
-& & ||D^{(j)}||_{2} = 1, \forall j % \; i = 1, \ldots, m.
-\end{aligned}
-\end{equation*}
-The columns of $D$ are the $k$ hyper-features composing describing the existence or not of an episode of joint attention.
-
+%\subsection{Mining the Features}
+%Our training set is an array of feature vectors $F = \{x^{(1)} \dots x^{(m)}\}$. Each $x^{(i)}$ represents a binary code of the detected features. We feed $F$ to a two layer clustering network composed in the following way: 
+%
+%In the {\bf first layer}, we learn a dictionary $D_{a} \in \mathbb{R}^{n \times k}$ of $k$ vectors so that a data vector $x^{(i)} \in \mathbb{R}^{n}$ where $i =1, \dots, m$ can be associated to a code vector $s^{(i)}$:
+%\begin{equation*}
+%\begin{aligned}
+%& \underset{D_{a},s}{\text{minimize}}
+%& &\sum_{i} ||D_{a}s^{(i)} - x^{(i)}||_{2}^{2}\\
+%& \text{subject to}
+%& & ||s^{(i)}||_{0} \leq 1, \forall i \\
+%& \text{and}
+%& & ||D_{a}^{(j)}||_{2} = 1, \forall j % \; i = 1, \ldots, m.
+%\end{aligned}
+%\end{equation*}
+%where $D_{a}^{(j)}$ is the $j'$th column of $D_{a}$. The {\bf second layer} takes as input the columns of $D_a$ for $a=1,\dots, n$ training agents. We learn a new dictionary $D \in \mathbb{R}^{2  \times k}$ of $k$ vectors so that a data vector $D_{a}^{(i)} \in \mathbb{R}^{2}$ where $i =1, \dots, k$, and  $a =1, \dots, n$ can be mapped to a code vector $s^{(i)}$:
+%\begin{equation*}
+%\begin{aligned}
+%& \underset{D_{a},s}{\text{minimize}}
+%& &\sum_{i} ||Ds^{(i)} - D_{a}^{(i)}||_{2}^{2}
+%&  & & a = 1,\dots, n\\
+%& \text{subject to}
+%& & ||s^{(i)}||_{0} \leq 1, \forall i \\% \; i = 1, \ldots, m.We propose to le
+%& \text{and}
+%& & ||D^{(j)}||_{2} = 1, \forall j % \; i = 1, \ldots, m.
+%\end{aligned}
+%\end{equation*}
+%The columns of $D$ are the $k$ hyper-features composing describing the existence or not of an episode of joint attention.
+%
 
 %The parameter $k$ of $\Gamma_{k}$ is manually selected. We aim at learning regions and sub-regions. We build 3 $\Gamma$ to categorize the scene regions. Variating $k$ we can build a coarse ($\Gamma_{k=5}$), a medium ($\Gamma_{k=10}$), and a finer ($\Gamma_{k=15}$) topologies. An example of three $\Gamma$s is shown in figure \ref{fig:TOPO}. Finally, the hierarchical configuration is intended to address the problem of finding the right number of clusters (or regions). We allow some over clustering in individual topologies as long as all interesting regions are represented in some part of the topologies.
-
+\section{Classification}
+To evaluate the framework, we train a naive bayes classifier for each children dataset. The classifier is evaluated using cross validation. Half of the dataset is used for training and testing the detection in the remaining half. The previous procedure is performed in switching the training and testing samples. The truing samples are the 6 dimensional vectors composed of the features: $<$Attention length, Attention speed,  face speed, face size, toy speed, toy size $>$
 \section{Evaluation}
 
 First order analytics can be extracted of the alignment of the automatic feature detection and the annotations. We map into the video timeline the video segments annotated as JA episode and the face and moving object detection. From the alignment, we compute the percentage of time of the automatic detection occurring inside and outside the manually annotated JA episode. We have performed this for a total 77,825 video frames of 4 different children.  Table 
@@ -282,6 +280,17 @@ Child 0801 &   8\%         &  4\%   &  11\%   & 11\%  & 16783\\
 \label{tb:Results2}
 \end{table*}
 
+
+\begin{figure}[h]
+     \begin{center}
+        \subfigure[todo]{%
+           \includegraphics[width=1\linewidth]{Image/weights.jpg} 
+           }
+          \end{center}
+    \caption{todo... 
+     }
+   \label{fig:main}
+\end{figure}
 
 \subsection{Dataset}
 
