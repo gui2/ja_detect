@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2010.7.21)  29 JAN 2014 14:39
+This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2010.7.21)  29 JAN 2014 14:53
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -474,6 +474,12 @@ Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
 \TX@cols=\count125
 \TX@ftn=\toks26
 )
+(/usr/local/texlive/2010/texmf-dist/tex/latex/appendix/appendix.sty
+Package: appendix 2009/09/02 v1.2b extra appendix facilities
+\c@@pps=\count126
+\c@@ppsavesec=\count127
+\c@@ppsaveapp=\count128
+)
 (/usr/local/texlive/2010/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
 s/tikzlibrarydecorations.pathreplacing.code.tex
 (/usr/local/texlive/2010/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
@@ -485,7 +491,7 @@ s.code.tex
 \pgfdecoratedinputsegmentcompleteddistance=\dimen170
 \pgfdecoratedinputsegmentremainingdistance=\dimen171
 \pgf@decorate@distancetomove=\dimen172
-\pgf@decorate@repeatstate=\count126
+\pgf@decorate@repeatstate=\count129
 \pgfdecorationsegmentamplitude=\dimen173
 \pgfdecorationsegmentlength=\dimen174
 ))
@@ -513,35 +519,35 @@ LaTeX Warning: Label `fig:main' multiply defined.
 )
 \openout1 = `ja_discovery.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for OMS/pzccm/m/n on input line 41.
-LaTeX Font Info:    Try loading font information for OMS+pzccm on input line 41
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OMS/pzccm/m/n on input line 42.
+LaTeX Font Info:    Try loading font information for OMS+pzccm on input line 42
 .
  (/usr/local/texlive/2010/texmf-dist/tex/latex/psnfss/omspzccm.fd
 File: omspzccm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/pzccm.
 )
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
 
 (/usr/local/texlive/2010/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count127
+\scratchcounter=\count130
 \scratchdimen=\dimen175
 \scratchbox=\box36
-\nofMPsegments=\count128
-\nofMParguments=\count129
+\nofMPsegments=\count131
+\nofMParguments=\count132
 \everyMPshowfont=\toks27
-\MPscratchCnt=\count130
+\MPscratchCnt=\count133
 \MPscratchDim=\dimen176
-\MPnumerator=\count131
+\MPnumerator=\count134
 \everyMPtoPDFconversion=\toks28
 ) (/usr/local/texlive/2010/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2010/04/01 v0.9 Utility functions of pdfTeX for LuaTeX (HO)
@@ -589,7 +595,7 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\c@maskedRefs=\count132
+\c@maskedRefs=\count135
 
 (/usr/local/texlive/2010/texmf-dist/tex/latex/apacite/english.apc
 File: english.apc 2009/03/01 v4.05 apacite language file
@@ -599,49 +605,49 @@ LaTeX Info: Redefining \BHBI on input line 120.
 NOT AUSTRALIAN!!!
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 42.
-LaTeX Font Info:    Try loading font information for OT1+ptmcm on input line 42
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 43.
+LaTeX Font Info:    Try loading font information for OT1+ptmcm on input line 43
 .
  (/usr/local/texlive/2010/texmf-dist/tex/latex/psnfss/ot1ptmcm.fd
 File: ot1ptmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ptmcm.
 )
-LaTeX Font Info:    Try loading font information for OML+ptmcm on input line 42
+LaTeX Font Info:    Try loading font information for OML+ptmcm on input line 43
 .
 
 (/usr/local/texlive/2010/texmf-dist/tex/latex/psnfss/omlptmcm.fd
 File: omlptmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ptmcm.
 )
-LaTeX Font Info:    Try loading font information for OMX+psycm on input line 42
+LaTeX Font Info:    Try loading font information for OMX+psycm on input line 43
 .
 
 (/usr/local/texlive/2010/texmf-dist/tex/latex/psnfss/omxpsycm.fd
 File: omxpsycm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/psycm.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 42.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 43.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 42.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 43.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 42.
-LaTeX Font Info:    Try loading font information for U+msa on input line 42.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 43.
+LaTeX Font Info:    Try loading font information for U+msa on input line 43.
 
 (/usr/local/texlive/2010/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 42.
+LaTeX Font Info:    Try loading font information for U+msb on input line 43.
 
 (/usr/local/texlive/2010/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+wasy on input line 42.
+LaTeX Font Info:    Try loading font information for U+wasy on input line 43.
 
 (/usr/local/texlive/2010/texmf-dist/tex/latex/wasysym/uwasy.fd
 File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 46.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 47.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 50.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 53.
 Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no ™ in font ptmr7t!
@@ -656,31 +662,25 @@ Overfull \hbox (2.5pt too wide) in paragraph at lines 76--77
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 85.
+<Image/a.png, id=6, 293.095pt x 215.80624pt>
+File: Image/a.png Graphic file (type png)
+ <use Image/a.png>
+<Image/c.png, id=7, 303.1325pt x 220.825pt>
+File: Image/c.png Graphic file (type png)
+ <use Image/c.png>
+<Image/d.png, id=8, 305.14pt x 214.8025pt>
+File: Image/d.png Graphic file (type png)
+ <use Image/d.png>
+Underfull \hbox (badness 10000) in paragraph at lines 85--102
+
+ []
+
 [1{/usr/local/texlive/2010/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
 
 ]
-<Image/a.png, id=14, 293.095pt x 215.80624pt>
-File: Image/a.png Graphic file (type png)
- <use Image/a.png>
-<Image/c.png, id=15, 303.1325pt x 220.825pt>
-File: Image/c.png Graphic file (type png)
- <use Image/c.png>
-<Image/d.png, id=16, 305.14pt x 214.8025pt>
-File: Image/d.png Graphic file (type png)
- <use Image/d.png>
-Underfull \hbox (badness 10000) in paragraph at lines 97--114
-
- []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 115--116
+Underfull \hbox (badness 10000) in paragraph at lines 103--104
 
  []
 
@@ -690,119 +690,117 @@ File: Image/Zem.png Graphic file (type png)
 <Image/four.png, id=18, 477.785pt x 335.2525pt>
 File: Image/four.png Graphic file (type png)
  <use Image/four.png>
-LaTeX Font Info:    Try loading font information for OML+ptm on input line 132.
+LaTeX Font Info:    Try loading font information for OML+ptm on input line 120.
 
 
 (/usr/local/texlive/2010/texmf-dist/tex/latex/psnfss/omlptm.fd
 File: omlptm.fd 
 )
 LaTeX Font Info:    Font shape `OML/ptm/m/n' in size <10> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 132.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 120.
  [2 <./Image/cogsci.png (PNG copy)> <./Image/a.png (PNG copy)> <./Image/c.png (
-PNG copy)> <./Image/d.png (PNG copy)>]
+PNG copy)> <./Image/d.png (PNG copy)> <./Image/Zem.png (PNG copy)> <./Image/fou
+r.png (PNG copy)>]
 Missing character: There is no Ã in font ptmr7t!
 Missing character: There is no ž in font ptmr7t!
 
-Underfull \hbox (badness 10000) in paragraph at lines 148--150
+Underfull \hbox (badness 10000) in paragraph at lines 136--138
 
  []
 
-<Image/g2.png, id=25, 182.6825pt x 184.69pt>
+<Image/g2.png, id=22, 182.6825pt x 184.69pt>
 File: Image/g2.png Graphic file (type png)
  <use Image/g2.png>
-<Image/g4.png, id=26, 233.87375pt x 240.9pt>
+<Image/g4.png, id=23, 233.87375pt x 240.9pt>
 File: Image/g4.png Graphic file (type png)
  <use Image/g4.png>
-<Image/z1.png, id=27, 119.44624pt x 107.40125pt>
+<Image/z1.png, id=24, 119.44624pt x 107.40125pt>
 File: Image/z1.png Graphic file (type png)
  <use Image/z1.png>
-<Image/z2.png, id=28, 104.39pt x 108.405pt>
+<Image/z2.png, id=25, 104.39pt x 108.405pt>
 File: Image/z2.png Graphic file (type png)
  <use Image/z2.png>
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<Image/Attchunk.png, id=29, 563.10374pt x 292.09125pt>
+<Image/Attchunk.png, id=26, 563.10374pt x 292.09125pt>
 File: Image/Attchunk.png Graphic file (type png)
 
-<use Image/Attchunk.png> [3 <./Image/Zem.png (PNG copy)> <./Image/four.png (PNG
- copy)>] <Image/log3.png, id=35, 801.99625pt x 633.36626pt>
+<use Image/Attchunk.png> [3 <./Image/g2.png (PNG copy)> <./Image/g4.png (PNG co
+py)> <./Image/z1.png (PNG copy)> <./Image/z2.png (PNG copy)>]
+<Image/log3.png, id=35, 801.99625pt x 633.36626pt>
 File: Image/log3.png Graphic file (type png)
-
-<use Image/log3.png> <Image/log2.png, id=36, 753.81625pt x 559.08875pt>
+ <use Image/log3.png>
+<Image/log2.png, id=36, 753.81625pt x 559.08875pt>
 File: Image/log2.png Graphic file (type png)
+ <use Image/log2.png>
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 186.
 
-<use Image/log2.png>
-Underfull \hbox (badness 10000) in paragraph at lines 199--200
+Underfull \hbox (badness 10000) in paragraph at lines 187--188
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 201--202
+Underfull \hbox (badness 10000) in paragraph at lines 189--190
 
  []
 
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/pzccm/m/n' tried instead on input line 205.
+(Font)              Font shape `OMS/pzccm/m/n' tried instead on input line 193.
 
 
-Underfull \hbox (badness 3049) in paragraph at lines 215--216
+Underfull \hbox (badness 3049) in paragraph at lines 203--204
 []\OT1/ptm/b/n/10 Object Size: \OT1/ptm/m/n/10 The di-am-e-ter of the de-tected
  ob-ject
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 221--222
+Underfull \hbox (badness 10000) in paragraph at lines 209--210
 
  []
 
-[4 <./Image/g2.png (PNG copy)> <./Image/g4.png (PNG copy)> <./Image/z1.png (PNG
- copy)> <./Image/z2.png (PNG copy)> <./Image/Attchunk.png (PNG copy)> <./Image/
-log3.png (PNG copy)> <./Image/log2.png (PNG copy)>]
-Underfull \hbox (badness 10000) in paragraph at lines 224--225
+
+Underfull \hbox (badness 10000) in paragraph at lines 212--213
 
  []
 
-<Image/individual.png, id=40, 1364.09625pt x 728.7225pt>
+[4 <./Image/Attchunk.png (PNG copy)> <./Image/log3.png (PNG copy)> <./Image/log
+2.png (PNG copy)>] <Image/individual.png, id=40, 1364.09625pt x 728.7225pt>
 File: Image/individual.png Graphic file (type png)
 
 <use Image/individual.png>
 <Image/weights.png, id=41, 978.65625pt x 420.57124pt>
 File: Image/weights.png Graphic file (type png)
  <use Image/weights.png>
-Overfull \hbox (26.89261pt too wide) in paragraph at lines 257--261
+Overfull \hbox (26.89261pt too wide) in paragraph at lines 245--249
  [] 
  []
 
 
-Overfull \hbox (2.5pt too wide) in paragraph at lines 257--261
+Overfull \hbox (2.5pt too wide) in paragraph at lines 245--249
  [] 
  []
 
+(./ja_discovery.bbl
+Underfull \vbox (badness 2229) has occurred while \output is active []
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-(./ja_discovery.bbl [5 <./Image/individual.png (PNG copy)> <./Image/weights.png
- (PNG copy)>]
+ [5 <./Image/individual.png (PNG copy)> <./Image/weights.png (PNG copy)>]
 Underfull \hbox (badness 5147) in paragraph at lines 402--408
 []\OT1/ptm/m/n/10 Robust Ob-ject Track-ing Based on Tracking-Learning-
  []
 
 Missing character: There is no Â in font ptmr7t!
 Missing character: There is no ’ in font ptmr7t!
-) [6] (./ja_discovery.aux)
+) [6
+
+] (./ja_discovery.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 10451 strings out of 493747
- 178551 string characters out of 3143546
- 235075 words of memory out of 3000000
- 13444 multiletter control sequences out of 15000+200000
+ 10550 strings out of 493747
+ 179982 string characters out of 3143546
+ 236494 words of memory out of 3000000
+ 13540 multiletter control sequences out of 15000+200000
  35393 words of font info for 74 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
  47i,9n,57p,1462b,302s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -816,7 +814,7 @@ exmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/local/texlive/2010/texmf-dist/f
 onts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2010/texmf-dist/fonts/type1
 /urw/times/utmr8a.pfb></usr/local/texlive/2010/texmf-dist/fonts/type1/urw/times
 /utmri8a.pfb>
-Output written on ja_discovery.pdf (6 pages, 2799647 bytes).
+Output written on ja_discovery.pdf (6 pages, 2799696 bytes).
 PDF statistics:
  78 PDF objects out of 1000 (max. 8388607)
  45 compressed objects within 1 object stream

@@ -14,6 +14,7 @@
 \usepackage{times}
 \usepackage{epsfig}
 \usepackage{tabularx}
+\usepackage[titletoc,toc,title]{appendix}
 
 
 \usetikzlibrary{decorations.pathreplacing,calc}
@@ -47,6 +48,8 @@ Stanford University}
 Joint attention; computer vision; child development; social cognition. 
 \end{abstract}
 
+
+
 \section{Introduction}
 
 How do young children begin learning the meanings of words? Across cultures, early vocabulary includes names for people, simple social routines, animals, and objects \cite{tardif2008}, suggesting that the earliest words are learned through interaction and play with others \cite{bruner1985}.  Identifying a caregiver's intended referent is a critical part of learning meaning within these interactions, and this identification is often accomplished through \emph{joint attention}.
@@ -63,15 +66,12 @@ The goal of our current work is to discover other signals of joint attention. Th
 
 We use two data sources to gain information about the social interaction between child and caregiver: head-mounted and fixed camera videos. Our approach is unsupervised discovery. We first use computational methods to extract a number of different features---including episodes of static attention, faces, and objects that are currently in motion. We then  examine the correlations between these features (and higher-level clusters of these features) and hand-coded joint attentional episodes. Our results suggest that there are a number of redundant perceptual cues to JA, and that some of these may be more robust and readily accessible to children than gaze.
 
-% The first stage, aims at detecting different type of features (i.e. {\bf faces, objects}) extracted frame by frame in the fixed camera information. The objects are the mutually attended ones. In general these objects are being handled and therefore they are moving. For each video frame our algorithm computes a motion mask and tracks the moving object by its color histogram. Over the extracted motion mask the object of interest is tracked using a Mean-Shift based color tracker.  Another feature are Òattention chunksÓ, which are the segments of the child's head mounted video attending visually to the same concept (object, person, etc.). We detect an Òattention chunkÓ by tracking a similar pixel texture over consecutive video frames.\\
 
-% The second stage,  combines the previous features as input of an automatic learning algorithm that can describe the salient combinations for the detection of joint attention. The algorithm can be seen as a deep learning technique that builds a two layer network of feature clusters.\\ 
 
 
 \begin{figure}[h]
      \begin{center}
         \subfigure[todo]{%
-           %\includegraphics[width=1\linewidth]{Image/AM1.jpg} 
            \includegraphics[width=1\linewidth]{Image/cogsci} 
            }
           \end{center}
@@ -79,18 +79,6 @@ We use two data sources to gain information about the social interaction between
      }
    \label{fig:main}
 \end{figure}
-
-\section{Data}
-
-\subsection{Videos}
-
-
-\subsection{Annotation}
-
-Episodes of joint attention were coded using the program OpenShapa. Joint attention was defined if it satisfied the criteria by Tomasello and Todd (1983). First, the interaction had to begin with either the parent or child initiating the interaction. For example, a parent could hold up an object and label it, or a child could bring an object over the parent. Second, both members focus on the single object for at least 3 seconds (including brief glances away). Third, at some point during the interaction the child must display an overt behavior towards the parent to show that he is aware of the interaction. 
-
-
-% An interaction was considered an “episode of joint attention” if it consisted of three components: an initiation, response, and termination. The initiation of joint attention was defined as when one member of the interaction directed the other’s attention towards a specific object. These interactions could be parent directed (labeled p). For example a parent could hold an object up in front of a child’s face while labeling it. Initiations could also be child directed (c), as a child could show an object to her parent, or the child could start playing with an object and the parent subsequently comments on the object. Second, there must be a response to this initiation. One member must respond by displaying an overt behavior that clearly indicates he is aware of the interaction. For example a child can look at the adult’s face. Third, the interaction must end with one member terminating the episode of joint attention. Additionally the entire interaction must consist of both members alternating focus between the object and the other person for at least three seconds (including momentary glances away). 
 
 \section{Features Computation}
 %%%%%% FIGURE FACE DETECTION
@@ -275,4 +263,7 @@ Third, the motion of objects is important when the children are playing interact
 \setlength{\bibindent}{-\bibleftmargin}
 
 \bibliography{ja}
+
+\section{Appendix: Joint Attention presence annotation}
+Joint attention was defined if it satisfied the criteria by Tomasello and Todd (1983). First, the interaction had to begin with either the parent or child initiating the interaction. For example, a parent could hold up an object and label it, or a child could bring an object over the parent. Second, both members focus on the single object for at least 3 seconds (including brief glances away). Third, at some point during the interaction the child must display an overt behavior towards the parent to show that he is aware of the interaction. 
 \end{document}
