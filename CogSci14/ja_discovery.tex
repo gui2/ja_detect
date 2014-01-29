@@ -17,16 +17,16 @@
 
 
 \usetikzlibrary{decorations.pathreplacing,calc}
-\title{Discovering the Signatures of Joint Attention in Egocentric Video}
- 
+\title{Discovering new Signatures of Joint Attention in Egocentric Video}
 
-\author{{\bf Guido Pusiol} \\ 
-\texttt{gpusiol@stanford.edu} \\
-  Department of Psychology \\
+\author{{\bf Guido Pusiol}\\ 
+\texttt{guido@cs.stanford.edu} \\
+Department of Computer Science\\
+Department of Psychology \\
 Stanford University
   \And {\bf Laura Soriano} \\ 
 \texttt{lsoriano@stanford.edu} \\
-  Department of Psychology\\
+Department of Psychology\\
 Stanford University 
 \And {\bf Li Fei-Fei} \\
 \texttt{feifeili@stanford.edu} \\
@@ -94,7 +94,7 @@ Episodes of joint attention were coded using the program OpenShapa. Joint attent
 
 \section{Features Computation}
 %%%%%% FIGURE FACE DETECTION
-{\bf 1. Face Detection.} Traditional off-the-shelf face detection algorithms fall short to detect the parent faces in the baby-cam dataset. Face detectors work accurately when the test dataset present low variability on the testing dataset and the distance is above 1 meter (e.g. Facebook like pictures). In the baby perspective other type of face configurations appear. Faces appear partially, blurred and with big size and texture variability (fig. \ref{fig:faces}) making their detection challenging. We address the problem by with a semi automated adaptive algorithm \cite{kalal}. The algorithm requires manual user input (selecting a face example per video) for its initialization, but then needed no additional training data. The algorithm uses new pixel patches in the trajectory of an optical-flow based tracker to train and update a face detector. The optical flow tracker and the face detector work in parallel. If the face detector finds a location in a new frame exhibiting a high similarity to its stored template, the tracker is re-initialised on that location. Otherwise, the tracker uses the optical flow to decide the location of a face in the new frame. The primary advantage of the algorithm is the use of motion for face detection: Following the movement of the pixels that define a face it is possible for the algorithm to adapt to new morphologies (i.e. different face poses).
+{\bf 1. Face Detection.} Traditional off-the-shelf face detection algorithms fall short to detect the parent faces in the baby-cam dataset. Face detectors work accurately when the test dataset present low variability on the testing dataset and the distance is above 1 meter (e.g. Facebook like pictures). In the baby perspective other type of face configurations appear. Faces appear partially, blurred and with big size and texture variability (fig. \ref{fig:faces}) making their detection challenging. We address the problem by with a semi automated adaptive algorithm \cite{kalal}. The algorithm requires manual user input (selecting a face example per video) for its initialization, but then needed no additional human intervention. The algorithm uses new pixel patches in the trajectory of an optical-flow based tracker to train and update a face detector. The optical flow tracker and the face detector work in parallel. If the face detector finds a location in a new frame exhibiting a high similarity to its stored template, the tracker is re-initialised on that location. Otherwise, the tracker uses the optical flow to decide the location of a face in the new frame. The primary advantage of the algorithm is the use of motion for face detection: Following the movement of the pixels that define a face it is possible for the algorithm to adapt to new morphologies (i.e. different face poses).
 \begin{figure}[h]
           \subfigure[Blurred]{
              \includegraphics[width=1in,height= 1in]{Image/a}
@@ -110,39 +110,24 @@ Episodes of joint attention were coded using the program OpenShapa. Joint attent
  }
 \label{fig:faces}
 \end{figure}
-{\bf Precision.} We evaluate the face detector using 37 videos of children's head mounted cameras.  Our evaluation compares the automatically detected faces with human ground truth annotations. The metrics:  precision = .92; recall = .99; true Negatives = 93; accuracy = 96 outperform the state of the art \cite{dpmface} due to the active-learning stage of the algorithm. 
+{\bf Precision.} We evaluate the face detector using 37 videos of children's head mounted cameras.  Our evaluation compares the automatically detected faces with human ground truth annotations. The metrics:  precision = .92; recall = .99; true Negatives = 93; accuracy = 96 outperform the state of the art \cite{dpmface} due to the active-learning stage of the algorithm.\\
 
-{\bf 2. Object detection and tracking.} An important cue of activity is related to motion. The detection of objects being handled even when they are not fully in the visual scope of the children could indicate that the joint attention is established. To automatically track and detect moving objects we first need to compute the foreground of the video. 
+{\bf 2. Handled object detection and tracking.} We aim at exploring cues of joint attention expressed by hand interactions. The detection of objects being moved even when they are not fully in the visual scope of the children could indicate that the joint attention is established. To automatically track moving objects we first compute the foreground mask representing the moving parts of the video. Understanding the moving parts helps to filter out static patches which can confuse the tracker -figure  \ref{fig:subfigures} (a)-, and also to filter out non manipulated objects of interest - figure \ref{fig:subfigures} (b)-\\
 
 %For that we make extensive use of local binary patterns as texture descriptors.
-\begin{figure}[h]
+\begin{figure}[ht]
      \begin{center}
           \subfigure[Object of interest (i.e. yellow square) could be confused with other similar textures and color objects in the scene (i.e red squares). The background mask (bottom-right) is filtering the problems out.]{
-        \includegraphics[width=0.9 \linewidth]{Image/Zem}}
+        \includegraphics[width=0.8\linewidth]{Image/Zem}}
         \subfigure[Objects of interest are being handled and therefore are moving (i.e. yellow square). Forgotten objects (i.e red squares) are filtered out by the foreground mask.]{
-        \includegraphics[width=0.9\linewidth]{Image/four}}
+        \includegraphics[width=0.8\linewidth]{Image/four}}
         \end{center}
 
     \caption{Foreground computation. In each image, top-left: original color frame, top-right: background model color vector ($I$), bottom-left: foreground weights, bottom-right: foreground extraction (i.e. orange or green pixels correspond to the background mask). (a) depicts the problem of similar texture and color of the scene and the object of interest. (b) represents the problem of uninteresting objects visible in the scene. Both problems are addressed at once with background/foreground segmentation filtering.}
    \label{fig:subfigures}
 \end{figure}
 
-%{\bf Local Binary Pattern:} 
-%Given a gray-scale pixel $x$ on the image {\bf I},
-%\begin {equation}
-%\begin{array}{ll}
-%		{\bf LBP}_{P,R}(x) = \{LBP^{p}_{P,R}(x) \}_{1\dots P} \\
-%		{LBP}^{p}_{P,R}(x) = s({\bf I}(v_{p})-{\bf I}(x)+n), 
-%  s(x) = \begin{cases} 
-%     1 & \textrm{x $\geq$ 0} \\
-%     0 & \textrm{x  $\textless$ 0} \\
-%   \end{cases} 
-%\end{array}
-%\end{equation}
-%where $\{ {\bf I}(v_{p})\}_{p = 1 \dots P}$ to the gray values of $P$ equally spaced pixels $\{v_{p}\}_{p=1 \dots P}$ on a circle of radius $R$ with center at $x$. The parameter which should make the LBP signature more stable against noise (e.g. like compression).\\
-%
-{\bf 2.1. Background Modeling} is the most important part of any foreground subtraction algorithms. The goal is to construct
-and maintain a statistical representation of the scene to be modeled. Here, we chose to utilize both texture information and color information when modeling the background. The approach \cite{odobez1} exploits the Local Binary Pattern (LBP) feature as a measure of texture because of its good properties \cite{Halika}, along with an illumination invariant photometric distance measure in the RGB space.\\
+{\bf 2.1. Foreground Modeling.} The goal is to construct and maintain a statistical representation of the scene to be modeled. Here, we chose to utilize both texture information and color information when modeling the background. The approach \cite{odobez1} exploits the Local Binary Pattern (LBP) feature as a measure of texture because of its good properties \cite{Halika}, along with an illumination invariant photometric distance measure in the RGB space.\\
 The background model ${{B}^{t}(x)}$ of the pixel $x$ at the time $t$ is represented by a list of modes $\{ {m}^{t}_{k}(x)\}_{k=1\dots K}$. The modes register historic information of 7 features of the pixels color and surrounding texture. ${m}^{t}_{k} = \{I ,\hat{I},\breve{I}, {LBP}_{k}, w,  \hat{w}, P \}$. Where ${I}$ represents the average $RGB$ image vector. $\hat{I}$ and $\breve{I}$ are the maximal and minimal $RGB$ image vectors. {LBP} is the vector of local binary patterns computed at this mode.\\
 The background model can learn up to $K^{max}$ different modes. For each new $I^{t}$ and $LBP^{t}$ a new mode is computed $m^{t-1}_{k}$ and the algorithm seeks to which learned mode $m^{t-1}_{k}$ the new mode maps to. The mapping is achieved by thresholding a distance (i.e $\tilde{k} = \underset{{k}}{\arg\min} ~ D(m^{t-1}_{k},m^{t}_{k})$). 1) If the new mode cannot be mapped to any of the learned ones and there is still space in the buffer ($K $\textless$ K^{max}$), then a new mode is initialized. 2) If there is a matched mode $m^{t-1}_{\tilde{k}}$, its representation is updated as follows:
 \begin{equation}
@@ -162,9 +147,8 @@ where $\beta \in [0,1)$ is the learning rate of the min and max color vectors an
 After the update step, all nodes are sorted decreasingly according to their weight. And the background modes are the first $B^{t}$ modes that satisfy:
 \begin {equation}\sum_{k=1}^{B^{t}} w_{k}^{t} / \sum_{k=1}^{K^{t}} w_{k}^{t} < TB \end{equation} where $TB  \in [0,1]$ is the background threshold.
 Note that the use of both color and texture, the chances that moving foreground objects generate a consistent mode overtime (and beneÞciate from this effect) are quite small.\\
-%%%%%%%%%%%%%%%Object tracking
 
-{\bf 2.2 Object tracking}. We are interested in detecting a tracking a set of objects (i.e. toys) components of triad when the parents and children are engaged in a JA episode. In particular the toys are being handled. The detection and tracking objects is performed over the foreground image. From a computer vision perspective, the objects are highly deformable making them hard to detect and track. The deformations are due to the changes of positions and hand-object occlusions that the object can take while is being manipulated. We have tried different appearance-based \cite{TLD} object detectors, and all of them failed. We have finally adopted to detect and track them by its color and relative size. We modified the cam-shift algorithm \cite{bradsky}, which is a specialization of  the well known mean-shift algorithm \cite{Meer2002}. The mean shift algorithm is a non-parametric technique that climbs the gradient of a probability distribution to find the nearest dominant mode (peak). In our case the distribution is based in color values. The algorithm initializes selecting a region containing the object of interest, and building a color histogram over the region. In a new frame, the algorithm will match the region size and the peaks of the color distribution using mean-shift and the euclidean distance. The figure \ref{fig:track} depicts examples of the detection and tracking of two different objects.\\
+{\bf 2.2 Object tracking}. We are interested in detecting a tracking a set of objects (i.e. toys) components of triad when the parents and children are engaged in a JA episode. In particular the toys are being manipulated. The detection and tracking objects is performed over the foreground image. From a computer vision perspective, the objects are highly deformable making them hard to detect and track. The deformations are due to the changes of positions and hand-object occlusions that the object can take while is being manipulated. We have tried different appearance-based \cite{TLD} object detectors, and all of them failed. We have finally adopted to detect and track them by its color and relative size. We modified the cam-shift algorithm \cite{bradsky}, which is a specialization of  the well known mean-shift algorithm \cite{Meer2002}. The mean shift algorithm is a non-parametric technique that climbs the gradient of a probability distribution to find the nearest dominant mode (peak). In our case the distribution is based in color values. The algorithm initializes selecting a region containing the object of interest, and building a color histogram over the region. In a new frame, the algorithm will match the region size and the peaks of the color distribution using mean-shift and the euclidean distance. The figure \ref{fig:track} depicts examples of the detection and tracking of two different objects.\\
 \begin{figure}[h!]
      \begin{center}
         \subfigure[Green object is detected]{
@@ -184,78 +168,65 @@ Note that the use of both color and texture, the chances that moving foreground 
 \end{figure}
 
 %%%%%% ATTENTION MOTION  ATTENTION CHUNKS
-{\bf 2.3. Attention Chunks:} 
-The attention chunks capture the segments of video of a child attending visually to the same concept (object, person, etc.). The ideal case is to have eye trackers to measure the gaze of the baby, but such a configuration is very hard to achieve in uncontrolled environments. Thus, we use the head-cam information as a gaze estimator. Our approach is backed by psychophysical experiments that indicate eye gaze and head pose are coupled in various tasks \cite{Land1,Pelz}. The attention chunk is computed automatically on the head camera video. The algorithm is initializes by modeling a pixel-texture patch ($P_{i}$). 
+{\bf 3. Attention Chunks:} 
+The attention chunks capture the segments of video of a child engaged visually to a concept. They are extracted of the head camera
+. The concept can be a concrete object (face, toy, etc.) or an abstract texture captured by the camera when the child's gaze is attending to an off-scope object (e.g. the child is handling a toy near his chest). The ideal case is to have eye trackers to understand the gaze of the baby, but such a configuration is very hard to achieve in uncontrolled environments. Thus, we use the head-cam information as a gaze estimator. Our approach is backed by psychophysical experiments that indicate eye gaze and head pose are coupled in various tasks \cite{Land1,Pelz}. The attention chunk is computed automatically. The algorithm is initializes by modeling a pixel-texture patch ($P_{i}$). 
 For each new frame the algorithm will seek for a similar patch to the one observed in the previous frame. If the patch is matched, a new point is added to the patch trajectory. If the matching is not achieved, a new patch ($P_{i+1}$) is learned and the tracking algorithm is re-initialized. The base algorithm used for tracking is a version of a tracker by detection algorithm \cite{kalal}. An Attention Chunk is the video segment defined by the $start_{P}$ and $end_{P}$ frames of the tacked patch trajectory.
 The figure \ref{fig:chunk} describes the basics of an attention chunk computation.\\
 \begin{figure}[h]
 \begin{center}
-        \includegraphics[width=0.8\linewidth]{Image/Attchunk} 
-        
+        \includegraphics[width=0.5\linewidth]{Image/Attchunk}      
           \end{center}
     \caption{Attention chunk computation.}
    \label{fig:chunk}
 \end{figure}
-
 We perform analytics over the obtained chunk lengths to understand behavioral structures hidden in the data. We have categorized the extracted chunks by their duration in groups of children of different ages. We used 37 children head can videos (~20 min. each) grouped by age: 6, 12 and 16 month old. The average duration of the chunks is depicted in the figure \ref{fig:duration}. Younger children show to have longer episodes of attending to a spot. While the reasons will require of further discussion, our thoughts are that 16 month old children can walk and are more autonomous, and can avoid the parents imposition of attending to certain objects. The figure \ref{fig:buckets} depicts the temporal duration of the chunks distributed in buckets of 10ms in a log scale. The graph shows that the decay is proportionally symmetric among the different groups, most of the attention chunks are of short duration and there are not "distractors" (i.e. a TV) that interfere with our guided attention towards new objects. 
 
-
 \begin{figure}[h]
+\begin{center}
         \subfigure[Duration of attentional chunks ordered by children age 8,12 and 16 month old.]{%           
-           \includegraphics[width=1 \linewidth]{Image/log3}
+           \includegraphics[width=0.5 \linewidth]{Image/log3}
            \label{fig:duration}
            }
            \subfigure[Duration of the attentional chunks distributed in buckets of 10ms and displayed in log scale (i.e. longer chunks appear to the right).]{%
-           \includegraphics[width=1\linewidth]{Image/log2}    \label{fig:buckets}
+           \includegraphics[width=0.45\linewidth]{Image/log2}    \label{fig:buckets}
             }
-           
-
 \caption{Attention Chunks: analyzing the duration in children of 8,12 and 16 month old.}
 \label{fig:subfigures}
+\end{center}
 \end{figure}
-\subsection{3. Aggregation: Mapping all features together}
+\subsection{4. Aggregation: Mapping all features together}
 In the previous sections we detected and computed features (faces, objects, etc.) in different cameras. The goal of this stage is to merge and prune the features into a single feature matrix describing the detected features at each video frame.\\
 
-{\bf 3.1. Synchronization} We calculate the bijective function mapping each frame of the fixed camera to the head mounted camera (i.e. figure \label{fig:main} ). When the inter camera frames can be mapped, the detected features and video attributes of both cameras can also be mapped together.\\
+{\bf 4.1. Synchronization.} We calculate the bijective function mapping each frame of the fixed camera to the head mounted camera (i.e. figure \label{fig:main} ). When the inter camera frames can be mapped, the detected features and video attributes of both cameras can also be mapped together.\\
 
-{\bf 3.2. Feature propagation} The features that are detected in a single video frame occupied by an attention chunk are propagated to all of the frames of the chunk. This step improves the quality of the detection assuming that the attention chunks are strong indicators of the child engaged in a full attention episode.\\
+{\bf 4.1. Features definition.} We calculate 6 features for each video $frame_{t}$. 
+\begin {itemize}
+\item {\bf Chunk Length:} The amount of frames that of the attention chunk containing the $frame_{t}$.
+\vspace {-0.2cm}
+\item {\bf Chunk Speed:} The average speed of the attention chunk trajectory. 
+\vspace {-0.2cm}
+\item {\bf Face Speed:} The speed, ($L_{2}$ norm) of the face position at $frame_{t}$ and $frame_{t-1}$.    
+\vspace {-0.2cm}
+\item {\bf Face Size:} The diagonal of the detected face bounding-box. This feature could characterize the parent-child distance.   
+\vspace {-0.2cm}
+\item {\bf Object Speed:} The speed, ($L_{2}$ norm) of the handled object position at $frame_{t}$ and $frame_{t-1}$.    
+\vspace {-0.2cm}
+\item {\bf Object Size:} The diameter of the detected object bounding-ellipse.
+\end{itemize}
+The lack of detection is replaced by the 0 value. 
 
-{\bf 3.3. Binarization} The features are binarized for normalization purposes. The features representing a detection (i.e. face and objects) event, are binary by definition. The features representing motion and length are binarized using the median of all observed values as their threshold.\\
+{\bf 4.2. Feature shrink an propagation.} The object and face features are computed frame by frame. We use the 
 
-%\subsection{Mining the Features}
-%Our training set is an array of feature vectors $F = \{x^{(1)} \dots x^{(m)}\}$. Each $x^{(i)}$ represents a binary code of the detected features. We feed $F$ to a two layer clustering network composed in the following way: 
-%
-%In the {\bf first layer}, we learn a dictionary $D_{a} \in \mathbb{R}^{n \times k}$ of $k$ vectors so that a data vector $x^{(i)} \in \mathbb{R}^{n}$ where $i =1, \dots, m$ can be associated to a code vector $s^{(i)}$:
-%\begin{equation*}
-%\begin{aligned}
-%& \underset{D_{a},s}{\text{minimize}}
-%& &\sum_{i} ||D_{a}s^{(i)} - x^{(i)}||_{2}^{2}\\
-%& \text{subject to}
-%& & ||s^{(i)}||_{0} \leq 1, \forall i \\
-%& \text{and}
-%& & ||D_{a}^{(j)}||_{2} = 1, \forall j % \; i = 1, \ldots, m.
-%\end{aligned}
-%\end{equation*}
-%where $D_{a}^{(j)}$ is the $j'$th column of $D_{a}$. The {\bf second layer} takes as input the columns of $D_a$ for $a=1,\dots, n$ training agents. We learn a new dictionary $D \in \mathbb{R}^{2  \times k}$ of $k$ vectors so that a data vector $D_{a}^{(i)} \in \mathbb{R}^{2}$ where $i =1, \dots, k$, and  $a =1, \dots, n$ can be mapped to a code vector $s^{(i)}$:
-%\begin{equation*}
-%\begin{aligned}
-%& \underset{D_{a},s}{\text{minimize}}
-%& &\sum_{i} ||Ds^{(i)} - D_{a}^{(i)}||_{2}^{2}
-%&  & & a = 1,\dots, n\\
-%& \text{subject to}
-%& & ||s^{(i)}||_{0} \leq 1, \forall i \\% \; i = 1, \ldots, m.We propose to le
-%& \text{and}
-%& & ||D^{(j)}||_{2} = 1, \forall j % \; i = 1, \ldots, m.
-%\end{aligned}
-%\end{equation*}
-%The columns of $D$ are the $k$ hyper-features composing describing the existence or not of an episode of joint attention.
-%
+ that are detected in a single video frame occupied by an attention chunk are propagated to all of the frames of the chunk. This step improves the quality of the detection assuming that the attention chunks are strong indicators of the child engaged in a full attention episode.\\ The operation is achieved bu a composition of mapping functions $f ~o~ g$. 
 
-%The parameter $k$ of $\Gamma_{k}$ is manually selected. We aim at learning regions and sub-regions. We build 3 $\Gamma$ to categorize the scene regions. Variating $k$ we can build a coarse ($\Gamma_{k=5}$), a medium ($\Gamma_{k=10}$), and a finer ($\Gamma_{k=15}$) topologies. An example of three $\Gamma$s is shown in figure \ref{fig:TOPO}. Finally, the hierarchical configuration is intended to address the problem of finding the right number of clusters (or regions). We allow some over clustering in individual topologies as long as all interesting regions are represented in some part of the topologies.
-\section{Classification}
-To evaluate the framework, we train a naive bayes classifier for each children dataset. The classifier is evaluated using cross validation. Half of the dataset is used for training and testing the detection in the remaining half. The previous procedure is performed in switching the training and testing samples. The truing samples are the 6 dimensional vectors composed of the features: $<$Attention length, Attention speed,  face speed, face size, toy speed, toy size $>$
+
+{\bf 4.3. Normalization.} Dealing with multi-modal features requires of a normalization step. We apply the linear mapping of each feature to the range $[0,1)$ using the minimum and maximum values of each feature vector.\\
+
+\section{Detecting Joint Attention}
+Is it possible to detect automatically complex events such as Joint Attention? The fact of being able to extract analytics of big amounts of data impossible for humans to annotate manually can open new questions of developmental behavior. We believe that the descriptive capabilities of the previously computed features is rich enough to train a joint attention classifier and detect these events in new unseen video frames. Therefore, we learn a joint attention activity model by training a naive Bayes Classifier. For each children, the training dataset takes half of the positive and negative Joint Attention feature vectors, and we use the remaining half for testing in a cross validation fashion. 
+ 
 \section{Evaluation}
-
 First order analytics can be extracted of the alignment of the automatic feature detection and the annotations. We map into the video timeline the video segments annotated as JA episode and the face and moving object detection. From the alignment, we compute the percentage of time of the automatic detection occurring inside and outside the manually annotated JA episode. We have performed this for a total 77,825 video frames of 4 different children.  Table 
 
 \begin{table*}
