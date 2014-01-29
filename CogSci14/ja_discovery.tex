@@ -218,7 +218,7 @@ The lack of detection is replaced by the 0 value.
 
 {\bf 4.2. Feature shrink an propagation.} The object and face features are computed frame by frame. We use the 
 
- that are detected in a single video frame occupied by an attention chunk are propagated to all of the frames of the chunk. This step improves the quality of the detection assuming that the attention chunks are strong indicators of the child engaged in a full attention episode.\\ The operation is achieved bu a composition of mapping functions $f ~o~ g$. 
+ that are detected in a single video frame occupied by an attention chunk are propagated to all of the frames of the chunk. This step improves the quality of the detection assuming that the attention chunks are strong indicators of the child engaged in a full attention episode.\\ The operation is achieved bu a composition of mapping functions $f ~o~ g$. \\
 
 
 {\bf 4.3. Normalization.} Dealing with multi-modal features requires of a normalization step. We apply the linear mapping of each feature to the range $[0,1)$ using the minimum and maximum values of each feature vector.\\
@@ -252,8 +252,11 @@ Child 0801 &   8\%         &  4\%   &  11\%   & 11\%  & 16783\\
 \end{table*}
 \begin{figure}[h]
      \begin{center}
-        \subfigure[todo]{%
-           \includegraphics[width=1\linewidth]{Image/weights.jpg} 
+          \subfigure[Weight distribution of the features learned by the model. Each graph represents and an independent experiment, still the inter experiments weight relationship is similar.]{%
+           \includegraphics[width=1.1\linewidth]{Image/individual} 
+           }
+        \subfigure[Average weights inter models. The results show that the most discriminative feature ha a strong relationship with the handled object, followed by the detection of faces.]{%
+           \includegraphics[width=1\linewidth]{Image/weights} 
            }
           \end{center}
     \caption{todo... 
