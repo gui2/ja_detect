@@ -224,7 +224,7 @@ The lack of detection is replaced by the 0 value.
 {\bf 4.3. Normalization.} Dealing with multi-modal features requires of a normalization step. We apply the linear mapping of each feature to the range $[0,1)$ using the minimum and maximum values of each feature vector.\\
 
 \section{Detecting Joint Attention}
-Is it possible to detect automatically complex events such as Joint Attention? The fact of being able to extract analytics of big amounts of data impossible for humans to annotate manually can open new questions of developmental behavior. We believe that the descriptive capabilities of the previously computed features is rich enough to train a joint attention classifier and detect these events in new unseen video frames. Therefore, we learn a joint attention activity model by training a naive Bayes Classifier. For each children, the training dataset takes half of the positive and negative Joint Attention feature vectors, and we use the remaining half for testing in a cross validation fashion. 
+Is it possible to automatically detect a complex event such as Joint Attention? Being able to extract analytics of big amounts of data, normally impossible for humans to annotate manually can open new research paths in developmental psychology. We show that the descriptive capabilities of the previously computed features is rich enough to train a joint attention classifier and detect these events in new unseen video frames. We train a naive Bayes Classifier. For each children, the training dataset takes half of the positive and negative Joint Attention feature vectors, and we use the remaining half for testing in a cross validation fashion. 
  
 \section{Evaluation}
 First order analytics can be extracted of the alignment of the automatic feature detection and the annotations. We map into the video timeline the video segments annotated as JA episode and the face and moving object detection. From the alignment, we compute the percentage of time of the automatic detection occurring inside and outside the manually annotated JA episode. We have performed this for a total 77,825 video frames of 4 different children.  Table 
@@ -250,8 +250,6 @@ Child 0801 &   8\%         &  4\%   &  11\%   & 11\%  & 16783\\
 \caption{The table shows the percentage (normalized by time) of detected faces and handled object inside and outside a JA episode. The distribution of faces and handled object is dense inside the JA episode showing that those features are indicators of a JA episode.}
 \label{tb:Results2}
 \end{table*}
-
-
 \begin{figure}[h]
      \begin{center}
         \subfigure[todo]{%
@@ -262,10 +260,7 @@ Child 0801 &   8\%         &  4\%   &  11\%   & 11\%  & 16783\\
      }
    \label{fig:main}
 \end{figure}
-
-\subsection{Dataset}
-
-\subsection{Evaluation Metrics}
+{\bf The benefits of the attention chunk:} We evaluate the same approach removing the attention chunk shrinking and propagation step. The accuracy of the classifier dropped down an average of 7\% in accuracy. 
 \subsection{Results}
 
 \section{Conclusions}

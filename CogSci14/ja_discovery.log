@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2010.7.21)  28 JAN 2014 19:19
+This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2010.7.21)  29 JAN 2014 10:26
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -764,18 +764,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 224--225
 <Image/weights.jpg, id=40, 1444.39626pt x 420.57124pt>
 File: Image/weights.jpg Graphic file (type jpg)
  <use Image/weights.jpg>
-Overfull \hbox (2.5pt too wide) in paragraph at lines 259--260
+Overfull \hbox (2.5pt too wide) in paragraph at lines 257--258
  [] 
  []
 
 (./ja_discovery.bbl
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 6510) has occurred while \output is active []
 
- [5 <./Image/weights.jpg>]
+
 Underfull \hbox (badness 5147) in paragraph at lines 402--408
 []\OT1/ptm/m/n/10 Robust Ob-ject Track-ing Based on Tracking-Learning-
  []
 
+[5 <./Image/weights.jpg>]
 Missing character: There is no Â in font ptmr7t!
 Missing character: There is no ’ in font ptmr7t!
 ) [6
@@ -803,7 +804,7 @@ exmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/local/texlive/2010/texmf-dist/f
 onts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2010/texmf-dist/fonts/type1
 /urw/times/utmr8a.pfb></usr/local/texlive/2010/texmf-dist/fonts/type1/urw/times
 /utmri8a.pfb>
-Output written on ja_discovery.pdf (6 pages, 2822099 bytes).
+Output written on ja_discovery.pdf (6 pages, 2822302 bytes).
 PDF statistics:
  77 PDF objects out of 1000 (max. 8388607)
  45 compressed objects within 1 object stream
