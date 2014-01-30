@@ -169,34 +169,6 @@ Carpenter, M.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
-Comaniciu%
-\ \BBA {} Meer%
-}{%
-Comaniciu%
-\ \BBA {} Meer%
-}{%
-{\protect \APACyear {2002}}%
-}]{%
-Meer2002}
-\APACinsertmetastar {%
-Meer2002}%
-\begin{APACrefauthors}%
-Comaniciu, D.%
-\BCBT {}\ \BBA {} Meer, P.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2002}{}{}.
-\newblock
-{\BBOQ}\APACrefatitle {{Mean shift: a robust approach toward feature space
-  analysis}} {{Mean shift: a robust approach toward feature space
-  analysis}}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{IEEE Transactions on Pattern Analysis and Machine
-  Intelligence}{24}{5}{603--619}.
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
 Franchak%
 , Kretch%
 , Soska%
@@ -348,30 +320,30 @@ Kalal, Z.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
-Land%
-\ \BBA {} Hayhoe%
+Kretch%
+, Franchak%
+\BCBL {}\ \BBA {} Adolph%
 }{%
-Land%
-\ \BBA {} Hayhoe%
-}{%
-{\protect \APACyear {2001}}%
+Kretch%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2013}}%
 }]{%
-Land1}
+kretch2013}
 \APACinsertmetastar {%
-Land1}%
+kretch2013}%
 \begin{APACrefauthors}%
-Land, M\BPBI F.%
-\BCBT {}\ \BBA {} Hayhoe, M.%
+Kretch, K\BPBI S.%
+, Franchak, J\BPBI M.%
+\BCBL {}\ \BBA {} Adolph, K\BPBI E.%
 \end{APACrefauthors}%
 \unskip\
 \newblock
-\APACrefYearMonthDay{2001}{}{}.
+\APACrefYearMonthDay{2013}{}{}.
 \newblock
-{\BBOQ}\APACrefatitle {{In what ways do eye movements contribute to everyday
-  activities?}} {{In what ways do eye movements contribute to everyday
-  activities?}}{\BBCQ}
+{\BBOQ}\APACrefatitle {Crawling and walking infants see the world differently}
+  {Crawling and walking infants see the world differently}.{\BBCQ}
 \newblock
-\APACjournalVolNumPages{Vision research}{}{}{}.
+\APACjournalVolNumPages{Child development}{}{}{}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -404,33 +376,6 @@ Morales, M.%
 \newblock
 \APACjournalVolNumPages{Journal of Applied Developmental
   Psychology}{21}{3}{283--298}.
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-Pelz%
-\ \BBA {} Canosa%
-}{%
-Pelz%
-\ \BBA {} Canosa%
-}{%
-{\protect \APACyear {2001}}%
-}]{%
-Pelz}
-\APACinsertmetastar {%
-Pelz}%
-\begin{APACrefauthors}%
-Pelz, J\BPBI B.%
-\BCBT {}\ \BBA {} Canosa, R.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2001}{}{}.
-\newblock
-{\BBOQ}\APACrefatitle {{Oculomotor behavior and perceptual strategies in
-  complex tasks}} {{Oculomotor behavior and perceptual strategies in complex
-  tasks}}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{Vision research}{}{}{}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -668,6 +613,35 @@ Yoshida, H.%
   study visual experience}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Infancy}{13}{3}{229--248}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Yu%
+\ \BBA {} Smith%
+}{%
+Yu%
+\ \BBA {} Smith%
+}{%
+{\protect \APACyear {2013}}%
+}]{%
+yu2013}
+\APACinsertmetastar {%
+yu2013}%
+\begin{APACrefauthors}%
+Yu, C.%
+\BCBT {}\ \BBA {} Smith, L\BPBI B.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2013}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Joint Attention without Gaze Following: Human Infants
+  and Their Parents Coordinate Visual Attention to Objects through Eye-Hand
+  Coordination.} {Joint attention without gaze following: Human infants and
+  their parents coordinate visual attention to objects through eye-hand
+  coordination.}{\BBCQ}
+\newblock
+\APACjournalVolNumPages{PLoS ONE}{8}{11}{e79659}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%

@@ -98,7 +98,9 @@ We describe automatic and semi-automatic methods for creating high-level semanti
 
 Traditional off-the-shelf face detection algorithms \cite<e.g.>{viola2001} fail at detecting parent faces in the kinds of egocentric video that we collected. Face detectors work accurately when the test dataset has low variance from the training dataset and the distance between the camera and the face is \textgreater 1 meter (e.g. Facebook-style pictures). From the egocentric perspective, however, many other face configurations are prevalent. Faces appear partially occluded or cropped, blurred by motion, and with large size and texture variability making detecting them very challenging (Figure \ref{fig:faces}). 
 
-We addressed the problem using a semi-automated adaptive algorithm \cite{kalal} that makes use of minimal user input for initialization (selecting one example face per video). The algorithm uses new pixel patches in the trajectory of an optical-flow based tracker to train and update a face detector. The optical flow tracker and the face detector work in parallel. If the face detector finds a location in a new frame exhibiting a high similarity to its stored template, the tracker is re-initialised on that location. Otherwise, the tracker uses the optical flow to decide the location of a face in the new frame. The primary advantage of the algorithm is the use of motion for face detection: Following the movement of the pixels that define a face it is possible for the algorithm to adapt to new morphologies (i.e. different face poses). More broadly, this method allows for a face that is partially occluded or poorly lit to be tagged as a face by virtue of its relationship with previous frames where the face information was clearer. 
+We addressed the problem using a semi-automated adaptive algorithm \cite{kalal} that makes use of minimal user input for initialization (selecting one example face per video). The algorithm uses new pixel patches in the trajectory of an optical-flow based tracker to train and update a face detector. The optical flow tracker and the face detector work in parallel. If the face detector finds a location in a new frame exhibiting a high similarity to its stored template, the tracker is re-initialised on that location. Otherwise, the tracker uses the optical flow to decide the location of a face in the new frame. 
+
+The primary advantage of the algorithm is the use of motion for face detection: Following the movement of the pixels that define a face it is possible for the algorithm to adapt to new morphologies (i.e. different face poses). More broadly, this method allows for a face that is partially occluded or poorly lit to be tagged as a face by virtue of its relationship with previous frames where the face information was clearer. 
 
 \begin{figure}[t]
           \subfigure[Motion blur]{
@@ -125,7 +127,7 @@ As part of an ongoing study following \citeA{frank2013}, we evaluated this face 
 %%%%%% ATTENTION MOTION  ATTENTION CHUNKS
 \subsection{Detecting Episodes of Static Attention}
 
-One important aspect of joint attention is that it should be (relatively) static if the child is focused on a single object. Congruent with that, previous work has found that episodes where a single object dominates the field of view (and hence the view field is static) are predictive of word learning \cite{smith2011,pereira2013}. We attempted to identify such moments of fixed attention (``attention chunks'') in an automated way. Our strategy is to track a large-scale region of the video (e.g. background texture) across frames; if this texture remains in a relatively static location, we can infer that the child's head has not moved significantly. If the texture deforms substantially, then the head is likely to be in motion. This approach is supported by prior experimental work indicating that eye gaze and head pose are typically coupled \cite{Land1,Pelz,yoshida2008}. 
+One important aspect of joint attention is that it should be (relatively) static if the child is focused on a single object. Congruent with that, previous work has found that episodes where a single object dominates the field of view (and hence the view field is static) are predictive of word learning \cite{smith2011,pereira2013}. We attempted to identify such moments of fixed attention (``attention chunks'') in an automated way. Our strategy is to track a large-scale region of the video (e.g. background texture) across frames; if this texture remains in a relatively static location, we can infer that the child's head has not moved significantly. If the texture deforms substantially, then the head is likely to be in motion. This approach is supported by prior experimental work indicating that eye gaze and head pose are typically coupled \cite{yoshida2008}. % Land1,Pelz
 
 
 % The attention chunks capture the segments of video of a child engaged visually to a concept. They are extracted of the head camera
@@ -214,7 +216,9 @@ The goal of foreground modeling is construct and maintain a statistical represen
 
 We used the extracted foreground pixels as the input to object-tracking algorithms. 
 % We are interested in detecting a tracking a set of objects (i.e. toys) components of triad when the parents and children are engaged in a JA episode. In particular the toys are being manipulated. The detection and tracking objects is performed over the foreground image. 
-We experimented with a number of appearance-based object detectors with relatively poor results \cite{TLD}. Our solution was to detect and track objects by their color and relative size. We modified the cam-shift algorithm \cite{bradsky}, a specialization of the mean-shift algorithm \cite{Meer2002}. Mean shift is a non-parametric technique that climbs the gradient of a probability distribution to find the nearest dominant mode (peak). In our case, this distribution is based in color values. The algorithm is initialized by selecting a region containing the object of interest and building a color histogram over the region. In a new frame, the algorithm will match the region's size and the peaks of the color distribution using both mean-shift and euclidean distance metrics. Figure \ref{fig:track} shows examples of the detection and tracking of two different objects.
+We experimented with a number of appearance-based object detectors with relatively poor results \cite{TLD}. Our solution was to detect and track objects by their color and relative size. We modified the cam-shift algorithm \cite{bradsky}, a specialization of the mean-shift algorithm.
+ % \cite{Meer2002}
+Mean shift is a non-parametric technique that climbs the gradient of a probability distribution to find the nearest dominant mode (peak). In our case, this distribution is based in color values. The algorithm is initialized by selecting a region containing the object of interest and building a color histogram over the region. In a new frame, the algorithm will match the region's size and the peaks of the color distribution using both mean-shift and euclidean distance metrics. Figure \ref{fig:track} shows examples of the detection and tracking of two different objects.
 
 \begin{figure}[t]
      \begin{center}
@@ -237,7 +241,7 @@ We experimented with a number of appearance-based object detectors with relative
 
 \section{Feature Aggregation}
 
-In the previous sections we detected and computed features (faces, objects, etc.) from different cameras. The goal of the next stage is to merge and prune these features into a single matrix describing the detected features for each video frame. This aggregation required a number of decisions to be made. First, we synchronized frames across the cameras (which had different frame rates). Next, we calculated six features for each frame $f$: 
+In the previous sections we detected and computed features (faces, objects, etc.) from different cameras. The goal of the next stage is to merge and prune these features into a single matrix describing the detected features for each video frame. This aggregation required a number of decisions to be made. First, we synchronized frames across the cameras (which had different frame rates). Next, we calculated six features for each frame $f$ (all normalized to the same interval based on the observed maximum and minimum): 
 
 % {\bf 4.1. Synchronization.} We calculate the bijective function mapping each frame of the fixed camera to the head mounted camera (i.e. figure \label{fig:main} ). When the inter camera frames can be mapped, the detected features and video attributes of both cameras can also be mapped together.\\
 
@@ -252,64 +256,91 @@ In the previous sections we detected and computed features (faces, objects, etc.
 \end{enumerate}
 % The lack of detection is replaced by the 0 value.\\ 
 
-Because object and face features were computed frame by frame, we experimented with using the attention chunks as a way to propagate features across larger ranges of time. Using this method, all those objects and faces detected in a single video frame that fell within an attention chunk were propagated to all of the frames of the chunk. Assuming that the attention chunks have some value as indicators of the child's attention, this step should improve the quality of detections. Finally, we normalized all features into the interval $[0,1)$.
+Because object and face features were computed frame by frame, we experimented with using the attention chunks as a way to propagate features across larger ranges of time. Using this method, all those objects and faces detected in a single video frame that fell within an attention chunk were propagated to all of the frames of the chunk. Assuming that the attention chunks have some value as indicators of the child's attention, this step should improve the quality of detections. We report results both with and without this propagation step. 
 
-\section{Detecting Joint Attention}
-Is it possible to automatically detect a complex event such as Joint Attention? Being able to extract analytics of big amounts of data, normally impossible for humans to annotate manually can open new research paths in developmental psychology. We show that the descriptive capabilities of the previously computed features is rich enough to train a joint attention classifier and detect these events in new unseen video frames. We train a naive Bayes Classifier. For each children, the training dataset takes half of the positive and negative Joint Attention feature vectors, and we use the remaining half for testing in a cross validation fashion. 
- 
 \section{Evaluation}
-First order analytics can be extracted of the alignment of the automatic feature detection and the annotations. We map into the video timeline the video segments annotated as JA episode and the face and moving object detection. From the alignment, we compute the percentage of time of the automatic detection occurring inside and outside the manually annotated JA episode. \\
 
-{\bf JA Detection Evaluation:} The evaluation of the JA automatic detection is depicted in the confusion matrix.
-The JA classification is evaluated using cross validation. We evaluate the percentage  of correctly classified new frames into JA episodes. The results are 66\%, 96\%, 94\% 95\% 60\% 88\% of correct classification for the 6 test subjects. The 6 subjects can be classified in two age groups, 8 and 16 month old. The average correct classification for the 8 month group is 85 \% while for the 16 month group is 81\%. The classification drop in the second group occurs due to the children mobility. When children can walk, they can move and play with object without needing the parent engaged in the activity.\\
 
-{\bf JA Features weights:} We evaluate the importance (i.e. weight) of each feature learned by the classifier. The figure \ref{fig:first} depicts the weight distribution learned for each independent experiment. In all experiments the features extracted of the detection of objects.\\
 
-\begin{table*}
+\begin{table}[t]
 \centering
-\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
-\cline{2-6}
-\multicolumn{1}{c}{} & \multicolumn{5}{c}{{\bf First order feature analysis}} 
-\\
-\cline{2-6}
-\multicolumn{1}{c|}{} &\%Faces IN & \%Faces OUT & \%Toy IN & \% Toy OUT & Total frames\\
-\hline\\[-1.2em]\hline
-Child 0807 &  19\%        & 4\%    &  85\%  &  $<$ 0\%& 19284\\
-\hline\
-Child 0815 &   21\%       & 5\%    &  51\%   &$<$ 0\%& 22421\\
-\hline\
-Child 1604 &   29\%       & 16\%  &  44\%   & $<$ 0\%  & 19337\\
-\hline\
-Child 0801 &   8\%         &  4\%   &  11\%   & 11\%  & 16783\\
+\begin{tabular}{ccc|cc|cc}
+& & &\multicolumn{2}{c}{Face} & \multicolumn{2}{c}{Object} \\
 \hline
-Child 1612 &   8\%         &  4\%   &  11\%   & 11\%  & 13450\\
+Child & Age & Frames & JA & no JA & JA & no JA \\
+\hline
+01 &  8  & 16783&  .08 &  .04   &  .11  & .11 \\
+07 &  8 & 19284& .19 & .04    &  .85  &  .00 \\
+15 &   8 & 22421& .21 & .05    &  .51   & .00 \\
+04 &  16 & 19337&  .29 & .16  &  .44   & .00  \\
+12-FIXME& 16 & 13450 &    .08 &  .04   &  .11   & .11 \\
 \hline
 \end{tabular}
-\caption{The table shows the percentage (normalized by time) of detected faces and handled object inside and outside a JA episode. The distribution of faces and handled object is dense inside the JA episode showing that those features are indicators of a JA episode.}
+\caption{Proportion of detected faces and objects, both inside and outside of JA episodes. Ages are in months.}
 \label{tb:Results2}
-\end{table*}
-\begin{figure}[h]
+\end{table}
+
+\subsection{Independent Feature Analyses}
+
+In our first analysis, we examined the proportion of face and object detections that fell inside hand-coded JA episodes. A first indication of the informativeness of these features would be greater proportions of detections within JA. Our findings supported that conclusion: Both faces and objects were more prevalent within JA episodes for most of the children that we studied (Table \ref{tb:Results2}). 
+
+\subsection{Classification Analysis}
+
+\begin{figure}[t]
      \begin{center}
-          
-          \subfigure[Weight distribution of the features learned by the model. Each graph represents and an independent experiment, still the inter experiments weight relationship is similar.]{%
-           \includegraphics[width=1\linewidth]{Image/weights} 
-           \label {fig:first}
-           }
-        \subfigure[Average weights inter models. The results show that the most discriminative feature ha a strong relationship with the handled object, followed by the detection of faces.]{%
-           \includegraphics[width=1\linewidth]{Image/individual} 
-           \label {fig:second}
-           }
+          % \subfigure[Weight distribution of the features learned by the model. Each graph represents and an independent experiment, still the inter experiments weight relationship is similar.]{%
+          %  \includegraphics[width=1\linewidth]{Image/weights} 
+          %  \label {fig:first}
+          %  }
+        % \subfigure[Average weights inter models. The results show that the most discriminative feature ha a strong relationship with the handled object, followed by the detection of faces.]{%
+           \includegraphics[width=3.4in]{Image/individual} 
+           % \label {fig:second}
+           % }
           \end{center}
-    \caption{todo... 
-     }
+    \caption{todo... }
    \label{fig:main}
 \end{figure}
-{\bf The benefits of the attention chunk:} We evaluate the same approach removing the attention chunk shrinking and propagation step. The accuracy of the classifier dropped down an average of 7\% in accuracy. 
-\subsection{Results}
+
+Our next analysis used all of the features described above to classify frames as being in or out of joint attention. Although in principle we could have used a complex model that took into account temporal dependencies between frames, we chose to begin by using a simple Naive Bayes classifier. The value of this initial approach is that it allows the straightforward examination of the weights on each feature. 
+
+\begin{table}[t]
+\centering
+\begin{tabular}{cc|ccc|ccc}
+ & &\multicolumn{3}{c}{Attn Chunks} & \multicolumn{3}{c}{Independent} \\
+\hline
+Child & Age & P & R & F & P & R & F \\
+\hline
+01 &  8  & & & & & & \\
+07 &  8 & & & & & &\\
+15 &   8 & & & & & &\\
+04 &  16 & & & & & &\\
+12-FIXME& 16 & & & & &\\
+\hline
+Total & & & & & & &\\
+\hline
+\end{tabular}
+\caption{Precision, recall, and F-score for classifying JA, listed for each child and across all children.}
+\label{tb:Results2}
+\end{table}
+
+The evaluation of the JA automatic detection is depicted in the confusion matrix.
+The JA classification is evaluated using cross validation. We evaluate the percentage  of correctly classified new frames into JA episodes. The results are 66\%, 96\%, 94\% 95\% 60\% 88\% of correct classification for the 6 test subjects. The 6 subjects can be classified in two age groups, 8 and 16 month old. The average correct classification for the 8 month group is 85 \% while for the 16 month group is 81\%. The classification drop in the second group occurs due to the children mobility. When children can walk, they can move and play with object without needing the parent engaged in the activity.\\
+
+We evaluate the importance (i.e. weight) of each feature learned by the classifier. The figure \ref{fig:first} depicts the weight distribution learned for each independent experiment. In all experiments the features extracted of the detection of objects.\\
+
+We evaluate the same approach removing the attention chunk shrinking and propagation step. The accuracy of the classifier dropped down an average of 7\% in accuracy. 
+
 
 \section{Conclusions}
-This paper aims at better understanding the episodes of joint attention by computing a set of features (i.e. Attention Chunks, Face, Object handling) which can drive to the automatic detection of Joint Attention. In this paper, 3 conclusions emerge. First, the motion of an object that is being part of a child-parent interaction are an important cue for joint attention detection. Second, the detection of sustained attention is a good proxy to improve the detection of joint attention. 
-Third, the motion of objects is important when the children are playing interactively with the parents, but then children have locomotion capabilities the object motion is not a strong cue of joint attention.
+
+The idea of ``joint attention'' (JA) is an important construct in understanding children's social interactions with their caregiver. Yet this construct is often defined from the perspective of a knowledgeable third-person observer. Such definitions have both psychological and practical consequences. Psychologically, a growing body of evidence suggests that children may not always have access to their parents' gaze \cite{franchak2011,yu2013,frank2013}, and so they may have to infer whether they are in joint attention from a host of noisy signals \cite{frank2013b}. Practically, identifying JA in large datasets using automated methods may be exceedingly difficult. 
+
+In the current paper, we looked for other features that were related to JA. We computed a set of features that were both semantically meaningful and possible to extract using current methods in computer vision: moments of caregivers' faces, moments of static attention, and objects in motion. We then analyzed the correspondence between these features and hand-coded episodes of JA. 
+
+Three findings emerged from this analysis. First, the motion of an object is a simple but highly diagnostic cue to JA---more so than the presence of the caregiver's face. Second, the propagation of features across the ``attention chunks'' that we identified improved our classification accuracy, suggesting that they carried some information about the child's sustained attention. Third, while the motion of objects was important when children were playing interactively with their parents, older children with greater locomotor ability also played independently, rendering object motion a less reliable cue. 
+
+This last trend connects to an important insight from working using egocentric cameras: Children's locomotor development is critically important in determining their view on the social world \cite{franchak2011,frank2013,kretch2013}.
+
 \bibliographystyle{apacite}
 
 \setlength{\bibleftmargin}{.125in}

@@ -14,45 +14,45 @@ Database file #1: ja.bib
 apacite.bst [2012/02/25 v6.01 APA bibliography style]
 Warning--No journal in bradsky
 Warning--No journal in TLD
-You've used 25 entries,
+You've used 24 entries,
             6735 wiz_defined-function locations,
-            1388 strings with 14678 characters,
-and the built_in function-call counts, 49465 in all, are:
-= -- 6164
-> -- 427
-< -- 2369
-+ -- 2486
-- -- 48
-* -- 3190
-:= -- 9002
-add.period$ -- 105
-call.type$ -- 25
-change.case$ -- 433
+            1381 strings with 14616 characters,
+and the built_in function-call counts, 48609 in all, are:
+= -- 6051
+> -- 418
+< -- 2376
++ -- 2504
+- -- 46
+* -- 3157
+:= -- 8910
+add.period$ -- 101
+call.type$ -- 24
+change.case$ -- 416
 chr.to.int$ -- 0
-cite$ -- 52
-duplicate$ -- 1309
-empty$ -- 1912
-format.name$ -- 749
-if$ -- 9350
+cite$ -- 50
+duplicate$ -- 1281
+empty$ -- 1844
+format.name$ -- 733
+if$ -- 9133
 int.to.chr$ -- 0
-int.to.str$ -- 50
+int.to.str$ -- 48
 missing$ -- 0
-newline$ -- 641
-num.names$ -- 192
-pop$ -- 754
+newline$ -- 617
+num.names$ -- 184
+pop$ -- 735
 preamble$ -- 1
-purify$ -- 105
+purify$ -- 101
 quote$ -- 0
-skip$ -- 3266
+skip$ -- 3160
 stack$ -- 0
-substring$ -- 2715
-swap$ -- 759
-text.length$ -- 62
+substring$ -- 2728
+swap$ -- 741
+text.length$ -- 60
 text.prefix$ -- 0
 top$ -- 1
-type$ -- 2210
+type$ -- 2130
 warning$ -- 2
-while$ -- 255
+while$ -- 253
 width$ -- 0
-write$ -- 831
+write$ -- 804
 (There were 2 warnings)
