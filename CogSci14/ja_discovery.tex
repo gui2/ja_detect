@@ -185,7 +185,7 @@ In the previous sections we detected and computed features (faces, objects, etc.
 
 {\bf 4.1. Synchronization.} We calculate the bijective function mapping each frame of the fixed camera to the head mounted camera (i.e. figure \label{fig:main} ). When the inter camera frames can be mapped, the detected features and video attributes of both cameras can also be mapped together.\\
 
-{\bf 4.1. Features definition.} We calculate 6 features for each video $frame_{t}$. 
+{\bf 4.2. Features definition.} We calculate 6 features for each video $frame_{t}$. 
 \begin {itemize}
 \item {\bf Chunk Length:} The amount of frames that of the attention chunk containing the $frame_{t}$.
 \vspace {-0.2cm}
@@ -199,24 +199,26 @@ In the previous sections we detected and computed features (faces, objects, etc.
 \vspace {-0.2cm}
 \item {\bf Object Size:} The diameter of the detected object bounding-ellipse.
 \end{itemize}
-The lack of detection is replaced by the 0 value. 
+The lack of detection is replaced by the 0 value.\\ 
 
-{\bf 4.2. Feature shrink an propagation.} The object and face features are computed frame by frame. We use the 
+{\bf 4.3. Feature shrink an propagation.} The object and face features are computed frame by frame. We use the 
 
  that are detected in a single video frame occupied by an attention chunk are propagated to all of the frames of the chunk. This step improves the quality of the detection assuming that the attention chunks are strong indicators of the child engaged in a full attention episode.\\ The operation is achieved bu a composition of mapping functions $f ~o~ g$. \\
 
 
-{\bf 4.3. Normalization.} Dealing with multi-modal features requires of a normalization step. We apply the linear mapping of each feature to the range $[0,1)$ using the minimum and maximum values of each feature vector.\\
+{\bf 4.4. Normalization.} Working with multi-modal features requires of a normalization. We apply the linear mapping of each feature to the range $[0,1)$ using the minimum and maximum values of each feature vector.\\
 
 \section{Detecting Joint Attention}
 Is it possible to automatically detect a complex event such as Joint Attention? Being able to extract analytics of big amounts of data, normally impossible for humans to annotate manually can open new research paths in developmental psychology. We show that the descriptive capabilities of the previously computed features is rich enough to train a joint attention classifier and detect these events in new unseen video frames. We train a naive Bayes Classifier. For each children, the training dataset takes half of the positive and negative Joint Attention feature vectors, and we use the remaining half for testing in a cross validation fashion. 
  
 \section{Evaluation}
-First order analytics can be extracted of the alignment of the automatic feature detection and the annotations. We map into the video timeline the video segments annotated as JA episode and the face and moving object detection. From the alignment, we compute the percentage of time of the automatic detection occurring inside and outside the manually annotated JA episode. 
+First order analytics can be extracted of the alignment of the automatic feature detection and the annotations. We map into the video timeline the video segments annotated as JA episode and the face and moving object detection. From the alignment, we compute the percentage of time of the automatic detection occurring inside and outside the manually annotated JA episode. \\
 
 {\bf JA Detection Evaluation:} The evaluation of the JA automatic detection is depicted in the confusion matrix.
-  
-{\bf JA Features weights:}\\
+The JA classification is evaluated using cross validation. We evaluate the percentage  of correctly classified new frames into JA episodes. The results are 66\%, 96\%, 94\% 95\% 60\% 88\% of correct classification for the 6 test subjects. The 6 subjects can be classified in two age groups, 8 and 16 month old. The average correct classification for the 8 month group is 85 \% while for the 16 month group is 81\%. The classification drop in the second group occurs due to the children mobility. When children can walk, they can move and play with object without needing the parent engaged in the activity.\\
+
+{\bf JA Features weights:} We evaluate the importance (i.e. weight) of each feature learned by the classifier. The figure \ref{fig:first} depicts the weight distribution learned for each independent experiment. In all experiments the features extracted of the detection of objects.\\
+
 \begin{table*}
 \centering
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
@@ -242,11 +244,14 @@ Child 1612 &   8\%         &  4\%   &  11\%   & 11\%  & 13450\\
 \end{table*}
 \begin{figure}[h]
      \begin{center}
+          
           \subfigure[Weight distribution of the features learned by the model. Each graph represents and an independent experiment, still the inter experiments weight relationship is similar.]{%
            \includegraphics[width=1\linewidth]{Image/weights} 
+           \label {fig:first}
            }
         \subfigure[Average weights inter models. The results show that the most discriminative feature ha a strong relationship with the handled object, followed by the detection of faces.]{%
            \includegraphics[width=1\linewidth]{Image/individual} 
+           \label {fig:second}
            }
           \end{center}
     \caption{todo... 
