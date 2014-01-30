@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2010.7.21)  29 JAN 2014 22:24
+This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2010.7.21)  29 JAN 2014 23:38
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -763,11 +763,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 209--210
  []
 
 [4 <./Image/Attchunk.png (PNG copy)> <./Image/log3.png (PNG copy)> <./Image/log
-2.png (PNG copy)>] <Image/weights.png, id=40, 1433.355pt x 642.4pt>
+2.png (PNG copy)>] <Image/weights.png, id=40, 1486.55376pt x 803.0pt>
 File: Image/weights.png Graphic file (type png)
 
 <use Image/weights.png>
-<Image/individual.png, id=41, 1206.5075pt x 743.77875pt>
+<Image/individual.png, id=41, 1087.06125pt x 604.2575pt>
 File: Image/individual.png Graphic file (type png)
 
 <use Image/individual.png>
@@ -813,7 +813,7 @@ exmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/local/texlive/2010/texmf-dist/f
 onts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2010/texmf-dist/fonts/type1
 /urw/times/utmr8a.pfb></usr/local/texlive/2010/texmf-dist/fonts/type1/urw/times
 /utmri8a.pfb>
-Output written on ja_discovery.pdf (6 pages, 2802858 bytes).
+Output written on ja_discovery.pdf (6 pages, 2803793 bytes).
 PDF statistics:
  78 PDF objects out of 1000 (max. 8388607)
  45 compressed objects within 1 object stream
