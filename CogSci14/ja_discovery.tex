@@ -75,7 +75,8 @@ The plan of the paper is as follows. We begin by describing our dataset, and the
 
 \subsection{Videos}
 
-We make use of a dataset of in-lab caregiver-child play sessions initially described in \citeA{frank2013}. In this dataset, parents were invited to play one-on-one with their children on the floor of a friendly, colorful room. The children wore a small head-mounted (egocentric) camera that captured their approximate visual experience, and a tripod-mounted camera captured the third-person perspective from one corner of the room. Child and caregiver played with a set of toys organized into pairs, with each pair containing a known object (e.g. a ball) and a novel object (e.g. a yellow feather duster). The novel objects were clearly labeled so that parents knew what to call them (e.g. the duster was a ``zem''). For purposes of the current study, we chose a set of FIXME videos containing three eight-month-old children and three sixteen-month-old children. Each video was between FIXME and FIXME minutes long. 
+We make use of a dataset of in-lab caregiver-child play sessions initially described in \citeA{frank2013}. In this dataset, parents were invited to play one-on-one with their children on the floor of a friendly, colorful room. The children wore a small head-mounted (egocentric) camera that captured their approximate visual experience, and a tripod-mounted camera captured the third-person perspective from one corner of the room. Child and caregiver played with a set of toys organized into pairs, with each pair containing a known object (e.g. a ball) and a novel object (e.g. a yellow feather duster). The novel objects were clearly labeled so that parents knew what to call them (e.g. the duster was a ``zem''). For purposes of the current study, we chose a set of nine videos containing five eight-month-old children and four sixteen-month-old children. 
+% Each video was between FIXME and FIXME minutes long. 
 
 \begin{figure}[t]
      \begin{center}
@@ -294,7 +295,7 @@ Because object and face features were computed frame by frame, we experimented w
 
 \subsection{Independent Feature Analyses}
 
-In our first analysis, we examined the proportion of face and object detections that fell inside hand-coded JA episodes. A first indication of the informativeness of these features would be greater proportions of detections within JA. Our findings supported that conclusion: Both faces and objects were more prevalent within JA episodes on average (Figure \ref{fig:main}), though this trend was much more pronounced for objects. Faces were 1.8x more prevalent in JA episodes, while moving objects were 3.0x more prevalent. 
+In our first analysis, we examined the proportion of face and object detections that fell inside hand-coded JA episodes. A first indication of the informativeness of these features would be greater proportions of detections within JA. Our findings supported that conclusion: Both faces and objects were more prevalent within JA episodes on average (Figure \ref{fig:main}A), though this trend was much more pronounced for objects. Faces were 1.8x more prevalent in JA episodes, while moving objects were 3.0x more prevalent. 
 
 \subsection{Classification Analysis}
 
@@ -308,33 +309,31 @@ Our next analysis used all of the features described above to classify frames as
 \hline
 Child & P & R & A & P & R & A \\
 \hline
-0801 & .41 & .19 & .67 & & & \\
-0805 & .63 & .45 & .86 & & & \\
-0807 & .47 & .94 & .95 & & & \\
-0811 & .64 & .44 & .80 & & & \\
-0815 & .74 & .80 & .95 & & & \\
-1604 & .42 & .86 & .96 & & & \\
-1612 & .56 & .80 & .55 & & & \\
-1622 & .54 & .54 & .89 & & & \\
-1635 & .38 & .53 & .93 & & & \\
+08-01 & .41 & .19 & .67 & & & \\
+08-05 & .63 & .45 & .86 & & & \\
+08-07 & .47 & .94 & .95 & & & \\
+08-11 & .64 & .44 & .80 & & & \\
+08-15 & .74 & .80 & .95 & & & \\
+16-04 & .42 & .86 & .96 & & & \\
+16-12 & .56 & .80 & .55 & & & \\
+16-22 & .54 & .54 & .89 & & & \\
+16-35 & .38 & .53 & .93 & & & \\
 \hline
-Total & 0.53 & .61 & .84 & & \\
+Total & .53 & .61 & .84 & & \\
 
 \hline
 \end{tabular}
-\caption{Precision, recall, and accuracy for classifying JA, listed for each child and across all children. ``Attn chunks'' refers to the model where features are propagated across attention chunks; ``independent'' refers to the model where each frame's features are determined independently.}
+\caption{Precision, recall, and accuracy for classifying JA, listed for each child and across all children. ``Attn chunks'' refers to the model where features are propagated across attention chunks; ``independent'' refers to the model where each frame's features are determined independently. Child ID codes include the child's age (08 refers to 8 months of age).}
 \label{tb:Results2}
 \end{table}
 
-Evaluation of the classifier in terms of 
+We trained the classifier on our hand-coded JA data and then used it to predict held-out data using 10-fold cross-validation. We then evaluated classifier performance on precision (proportion of frames classified as JA that were actually JA), recall (proportion of actual JA frames that were correctly classified as JA), and accuracy (overall proportion frames correctly classified). 
 
-The evaluation of the JA automatic detection is depicted in the confusion matrix.
-The JA classification is evaluated using cross validation. We evaluate the percentage  of correctly classified new frames into JA episodes. The results are 66\%, 96\%, 94\% 95\% 60\% 88\% of correct classification for the 6 test subjects. The 6 subjects can be classified in two age groups, 8 and 16 month old. The average correct classification for the 8 month group is 85 \% while for the 16 month group is 81\%. The classification drop in the second group occurs due to the children mobility. When children can walk, they can move and play with object without needing the parent engaged in the activity.\\
+Results for individual children and aggregate results are shown in Table \ref{tab:Results2}. Although there was substantial variability in accuracy across children, there were no systematic differences across ages. In particular, identifying JA episodes was largely unsuccessful for children like 08-01, while for other children like 08-15 our features were almost perfectly diagnostic. 
 
-We evaluate the importance (i.e. weight) of each feature learned by the classifier. The figure \ref{fig:first} depicts the weight distribution learned for each independent experiment. In all experiments the features extracted of the detection of objects.\\
+We additionally examined the feature weights learned by the classifier. Figure \ref{fig:main}B shows average weights on each of the six features. We see very little difference in weight for attention chunk length and speed, suggesting that these characteristics of the chunks did not differ within JA episodes. The most positive weight is given to the object features (especially object speed---which perhaps acted as a proxy for engagement with the object), congruent with the independent feature analyses. Weights for face features mismatched the independent feature analysis, however, with \emph{less} weight given to faces inside JA episodes. 
 
-We evaluate the same approach removing the attention chunk shrinking and propagation step. The accuracy of the classifier dropped down an average of 7\% in accuracy. 
-
+FIXME We evaluate the same approach removing the attention chunk shrinking and propagation step. The accuracy of the classifier dropped down an average of 7\% in accuracy. 
 
 \section{Conclusions}
 
