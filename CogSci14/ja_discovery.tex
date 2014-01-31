@@ -15,6 +15,7 @@
 \usepackage{epsfig}
 \usepackage{tabularx}
 \usepackage{enumitem}
+\usepackage{sidecap}
 \usepackage[titletoc,toc,title]{appendix}
 
 
@@ -266,65 +267,62 @@ Because object and face features were computed frame by frame, we experimented w
 \section{Evaluation}
 
 
+\begin{SCfigure*}
+  \includegraphics[width=4.5in]{Image/classifier2.pdf} 
+  % \begin{center}
+  \caption{(A) Proportion of faces and objects detected both in and out of joint attentional episodes. (B) Mean parameter weights on each of the six features we considered for the JA and non-JA categories in the Naive Bayes Classifier. Legend is as in (A).  \label{fig:main}}
+  % \end{center}
+\end{SCfigure*}
 
-\begin{table}[t]
-\centering
-\begin{tabular}{ccc|cc|cc}
-& & &\multicolumn{2}{c}{Face} & \multicolumn{2}{c}{Object} \\
-\hline
-Child & Age & Frames & JA & no JA & JA & no JA \\
-\hline
-01 &  8  & 16783&  .08 &  .04   &  .11  & .11 \\
-07 &  8 & 19284& .19 & .04    &  .85  &  .00 \\
-15 &   8 & 22421& .21 & .05    &  .51   & .00 \\
-04 &  16 & 19337&  .29 & .16  &  .44   & .00  \\
-12-FIXME& 16 & 13450 &    .08 &  .04   &  .11   & .11 \\
-\hline
-\end{tabular}
-\caption{Proportion of detected faces and objects, both inside and outside of JA episodes. Ages are in months.}
-\label{tb:Results2}
-\end{table}
+% \begin{table}[t]
+% \centering
+% \begin{tabular}{ccc|cc|cc}
+% & & &\multicolumn{2}{c}{Face} & \multicolumn{2}{c}{Object} \\
+% \hline
+% Child & Age & Frames & JA & no JA & JA & no JA \\
+% \hline
+% 01 &  8  & 16783&  .08 &  .04   &  .11  & .11 \\
+% 07 &  8 & 19284& .19 & .04    &  .85  &  .00 \\
+% 15 &   8 & 22421& .21 & .05    &  .51   & .00 \\
+% 04 &  16 & 19337&  .29 & .16  &  .44   & .00  \\
+% 12-FIXME& 16 & 13450 &    .08 &  .04   &  .11   & .11 \\
+% \hline
+% \end{tabular}
+% \caption{Proportion of detected faces and objects, both inside and outside of JA episodes. Ages are in months.}
+% \label{tb:Results2}
+% \end{table}
 
 \subsection{Independent Feature Analyses}
 
-In our first analysis, we examined the proportion of face and object detections that fell inside hand-coded JA episodes. A first indication of the informativeness of these features would be greater proportions of detections within JA. Our findings supported that conclusion: Both faces and objects were more prevalent within JA episodes for most of the children that we studied (Table \ref{tb:Results2}). 
+In our first analysis, we examined the proportion of face and object detections that fell inside hand-coded JA episodes. A first indication of the informativeness of these features would be greater proportions of detections within JA. Our findings supported that conclusion: Both faces and objects were more prevalent within JA episodes on average (Figure \ref{fig:main}), though this trend was much more pronounced for objects. Faces were 1.8x more prevalent in JA episodes, while moving objects were 3.0x more prevalent. 
 
 \subsection{Classification Analysis}
 
-\begin{figure}[t]
-     \begin{center}
-          % \subfigure[Weight distribution of the features learned by the model. Each graph represents and an independent experiment, still the inter experiments weight relationship is similar.]{%
-          %  \includegraphics[width=1\linewidth]{Image/weights} 
-          %  \label {fig:first}
-          %  }
-        % \subfigure[Average weights inter models. The results show that the most discriminative feature ha a strong relationship with the handled object, followed by the detection of faces.]{%
-           \includegraphics[width=3.4in]{Image/individual.pdf} 
-           % \label {fig:second}
-           % }
-          \end{center}
-    \caption{todo... }
-   \label{fig:main}
-\end{figure}
 
 Our next analysis used all of the features described above to classify frames as being in or out of joint attention. Although in principle we could have used a complex model that took into account temporal dependencies between frames, we chose to begin by using a simple Naive Bayes classifier. The value of this initial approach is that it allows the straightforward examination of the weights on each feature. 
 
 \begin{table}[t]
 \centering
-\begin{tabular}{cc|ccc|ccc}
- & &\multicolumn{3}{c}{Attn Chunks} & \multicolumn{3}{c}{Independent} \\
+\begin{tabular}{c|ccc|ccc}
+ &\multicolumn{3}{c}{Attn Chunks} & \multicolumn{3}{c}{Independent} \\
 \hline
-Child & Age & P & R & F & P & R & F \\
+Child & P & R & A & P & R & A \\
 \hline
-01 &  8  & & & & & & \\
-07 &  8 & & & & & &\\
-15 &   8 & & & & & &\\
-04 &  16 & & & & & &\\
-12-FIXME& 16 & & & & &\\
+0801 & .41 & .19 & .67 & & & \\
+0805 & .63 & .45 & .86 & & & \\
+0807 & .47 & .94 & .95 & & & \\
+0811 & .64 & .44 & .80 & & & \\
+0815 & .74 & .80 & .95 & & & \\
+1604 & .42 & .86 & .96 & & & \\
+1612 & .56 & .80 & .55 & & & \\
+1622 & .54 & .54 & .89 & & & \\
+1635 & .38 & .53 & .93 & & & \\
 \hline
-Total & & & & & & &\\
+Total & 0.53 & .61 & .84 & & \\
+
 \hline
 \end{tabular}
-\caption{Precision, recall, and F-score for classifying JA, listed for each child and across all children. ``Attn chunks'' refers to the model where features are propagated across attention chunks; ``independent'' refers to the model where each frame's features are determined independently.}
+\caption{Precision, recall, and accuracy for classifying JA, listed for each child and across all children. ``Attn chunks'' refers to the model where features are propagated across attention chunks; ``independent'' refers to the model where each frame's features are determined independently.}
 \label{tb:Results2}
 \end{table}
 
