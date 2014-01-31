@@ -53,8 +53,8 @@ for i = 1:9
         'Face Speed','Face Size','Object Speed','Object Size'});
     
 end
-saveas(gcf, 'test.png')
-export_fig test.pdf
+%saveas(gcf, 'test.png')
+export_fig /Users/Gui/Desktop/ja_detect/CogSci14/Image/weights.pdf
 
 figure (2);
 for i = 1:9
@@ -88,4 +88,4 @@ set(gca,'XTickLabel',{'Chunk Length','Chunk Speed',...
 ylabel('Parameter weight')
 title('Mean Classifer Parameter Weights')
 xlabel('Feature')
-
+export_fig /Users/Gui/Desktop/ja_detect/CogSci14/Image/individual.pdf
