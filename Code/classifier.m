@@ -1,8 +1,8 @@
 close all;
 clear all; 
 
-file = '/Users/Gui/CogSciData/PartialMatrices/';
-kids = {'0801','0807','0811','0815','1604','1612','1622','1635'};
+file = '/Users/Gui/Desktop/ja_detect/Code/PartialMatrices/';
+kids = {'0801','0805','0807','0811','0815','1604','1612','1622','1635'};
 
 %% 10-fold NB classification 
 
@@ -30,7 +30,7 @@ for k = 1:length(kids)
         fold_avg(k,i) = mean(preds == gt_frame(test));
         
         % extract parameters
-        for p = 1:8
+        for p = 1:9
             params(k,i,p,:) = nb.Params{p};
         end
     end
@@ -43,7 +43,7 @@ mean(fold_avg,2)
 m_params = squeeze(mean(params,2));
 
 figure (1);
-for i = 1:7
+for i = 1:9
     subplot(3,3,i)
        colormap([1 0 0; 0 0 1]);
     bar(squeeze(m_params(i,:,:)))
@@ -57,7 +57,7 @@ saveas(gcf, 'test.png')
 export_fig test.pdf
 
 figure (2);
-for i = 1:8
+for i = 1:9
     subplot(3,3,i)
  
     bar(descriptives(:,:,i)')
