@@ -1,7 +1,7 @@
 close all;
 clear all; 
 
-file = '/Users/Gui/Desktop/ja_detect/Code/PartialMatrices/';
+file = '/Users/Gui/ja_detect/Code/PartialMatrices/';
 kids = {'0801','0805','0807','0811','0815','1604','1612','1622','1635'};
 
 %% 10-fold NB classification 
@@ -54,7 +54,7 @@ for i = 1:9
     
 end
 %saveas(gcf, 'test.png')
-export_fig /Users/Gui/Desktop/ja_detect/CogSci14/Image/weights.pdf
+export_fig /Users/Gui/ja_detect/CogSci14/Image/weights.pdf
 
 figure (2);
 for i = 1:9
@@ -88,4 +88,13 @@ set(gca,'XTickLabel',{'Chunk Length','Chunk Speed',...
 ylabel('Parameter weight')
 title('Mean Classifer Parameter Weights')
 xlabel('Feature')
-export_fig /Users/Gui/Desktop/ja_detect/CogSci14/Image/individual.pdf
+% 
+% a=get(gca,'XTickLabel');
+% set(gca,'XTickLabel',[]);
+% b=get(gca,'XTick');
+% c=get(gca,'YTick');
+% rot=90;
+% text(b,repmat(c(1)+2*(c(2)-c(1)),length(b),1),a,'HorizontalAlignment','right','rotation',rot,'FontSize', 13, 'FontWeight', 'normal');
+% 
+% set(gca,'ButtonDownFcn','selectmoveresize');
+export_fig /Users/Gui/ja_detect/CogSci14/Image/individual.pdf
