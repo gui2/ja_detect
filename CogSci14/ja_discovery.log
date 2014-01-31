@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2010.7.21)  30 JAN 2014 19:53
+This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2010.7.21)  30 JAN 2014 20:35
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -722,7 +722,7 @@ Overfull \hbox (2.44765pt too wide) in paragraph at lines 267--279
 
 [4 <./Image/Zem.png (PNG copy)> <./Image/four.png (PNG copy)> <./Image/g2.png (
 PNG copy)> <./Image/g4.png (PNG copy)> <./Image/z1.png (PNG copy)> <./Image/z2.
-png (PNG copy)>] <Image/individual.pdf, id=36, 1166.3575pt x 568.1225pt>
+png (PNG copy)>] <Image/individual.pdf, id=36, 487.8225pt x 394.47375pt>
 File: Image/individual.pdf Graphic file (type pdf)
 
 <use Image/individual.pdf>
@@ -750,11 +750,7 @@ Underfull \hbox (badness 5147) in paragraph at lines 420--426
 
 Missing character: There is no Â in font ptmr7t!
 Missing character: There is no ’ in font ptmr7t!
-
-Underfull \vbox (badness 1264) has occurred while \output is active []
-
-) [6]
-(./ja_discovery.aux)
+) [6] (./ja_discovery.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -765,7 +761,7 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  10683 strings out of 493747
  182224 string characters out of 3143546
- 236748 words of memory out of 3000000
+ 235748 words of memory out of 3000000
  13677 multiletter control sequences out of 15000+200000
  33013 words of font info for 69 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
@@ -778,7 +774,7 @@ ve/2010/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2010/
 texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2010/texmf-dist
 /fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2010/texmf-dist/fonts/typ
 e1/urw/times/utmri8a.pfb>
-Output written on ja_discovery.pdf (6 pages, 2647054 bytes).
+Output written on ja_discovery.pdf (6 pages, 2646667 bytes).
 PDF statistics:
  72 PDF objects out of 1000 (max. 8388607)
  43 compressed objects within 1 object stream
