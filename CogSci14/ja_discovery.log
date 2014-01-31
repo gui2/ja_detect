@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/MacPorts 2013_2) (format=pdflatex 2013.8.26)  30 JAN 2014 14:55
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/MacPorts 2013_2) (format=pdflatex 2013.8.26)  30 JAN 2014 15:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -654,92 +654,90 @@ Missing character: There is no ™ in font ptmr7t!
 
 
 ]
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 75.
+
 <Image/cogsci.png, id=13, 1104.125pt x 721.69624pt>
 File: Image/cogsci.png Graphic file (type png)
  <use Image/cogsci.png>
-Package pdftex.def Info: Image/cogsci.png used on input line 80.
+Package pdftex.def Info: Image/cogsci.png used on input line 82.
 (pdftex.def)             Requested size: 243.91125pt x 159.42339pt.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 87.
-LaTeX Font Info:    Try loading font information for OML+ptm on input line 99.
+LaTeX Font Info:    Try loading font information for OML+ptm on input line 101.
+
 
 (/opt/local/share/texmf-texlive/tex/latex/psnfss/omlptm.fd
 File: omlptm.fd 
 )
 LaTeX Font Info:    Font shape `OML/ptm/m/n' in size <10> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 99.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 101.
 
 <Image/a.png, id=14, 293.095pt x 215.80624pt>
 File: Image/a.png Graphic file (type png)
  <use Image/a.png>
-Package pdftex.def Info: Image/a.png used on input line 108.
+Package pdftex.def Info: Image/a.png used on input line 110.
 (pdftex.def)             Requested size: 72.2673pt x 72.27pt.
 
 <Image/c.png, id=15, 303.1325pt x 220.825pt>
 File: Image/c.png Graphic file (type png)
  <use Image/c.png>
-Package pdftex.def Info: Image/c.png used on input line 111.
+Package pdftex.def Info: Image/c.png used on input line 113.
 (pdftex.def)             Requested size: 72.26761pt x 72.26932pt.
 
 <Image/d.png, id=16, 305.14pt x 214.8025pt>
 File: Image/d.png Graphic file (type png)
  <use Image/d.png>
-Package pdftex.def Info: Image/d.png used on input line 114.
+Package pdftex.def Info: Image/d.png used on input line 116.
 (pdftex.def)             Requested size: 72.27129pt x 72.27147pt.
  [2 <./Image/cogsci.png> <./Image/a.png> <./Image/c.png> <./Image/d.png>]
 <Image/log2.png, id=21, 753.81625pt x 559.08875pt>
 File: Image/log2.png Graphic file (type png)
  <use Image/log2.png>
-Package pdftex.def Info: Image/log2.png used on input line 157.
+Package pdftex.def Info: Image/log2.png used on input line 159.
 (pdftex.def)             Requested size: 245.71754pt x 182.23914pt.
 
-Overfull \hbox (1.80629pt too wide) in paragraph at lines 157--159
+Overfull \hbox (1.80629pt too wide) in paragraph at lines 159--161
  [] 
  []
-
-
-Underfull \vbox (badness 1072) has occurred while \output is active []
-
 
 <Image/Zem.png, id=22, 524.96124pt x 335.2525pt>
 File: Image/Zem.png Graphic file (type png)
  <use Image/Zem.png>
-Package pdftex.def Info: Image/Zem.png used on input line 182.
+Package pdftex.def Info: Image/Zem.png used on input line 184.
 (pdftex.def)             Requested size: 195.12975pt x 124.61441pt.
 
 <Image/four.png, id=23, 477.785pt x 335.2525pt>
 File: Image/four.png Graphic file (type png)
  <use Image/four.png>
-Package pdftex.def Info: Image/four.png used on input line 184.
+Package pdftex.def Info: Image/four.png used on input line 186.
 (pdftex.def)             Requested size: 195.12975pt x 136.91728pt.
 
-Underfull \vbox (badness 2302) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [3 <./Image/log2.png>] <Image/g2.png, id=29, 182.6825pt x 184.69pt>
 File: Image/g2.png Graphic file (type png)
  <use Image/g2.png>
-Package pdftex.def Info: Image/g2.png used on input line 229.
+Package pdftex.def Info: Image/g2.png used on input line 234.
 (pdftex.def)             Requested size: 97.563pt x 98.63484pt.
 
 <Image/g4.png, id=30, 233.87375pt x 240.9pt>
 File: Image/g4.png Graphic file (type png)
  <use Image/g4.png>
-Package pdftex.def Info: Image/g4.png used on input line 229.
+Package pdftex.def Info: Image/g4.png used on input line 234.
 (pdftex.def)             Requested size: 97.563pt x 100.49359pt.
 
 <Image/z1.png, id=31, 119.44624pt x 107.40125pt>
 File: Image/z1.png Graphic file (type png)
  <use Image/z1.png>
-Package pdftex.def Info: Image/z1.png used on input line 234.
+Package pdftex.def Info: Image/z1.png used on input line 239.
 (pdftex.def)             Requested size: 109.75931pt x 98.69069pt.
 
 <Image/z2.png, id=32, 104.39pt x 108.405pt>
 File: Image/z2.png Graphic file (type png)
  <use Image/z2.png>
-Package pdftex.def Info: Image/z2.png used on input line 234.
+Package pdftex.def Info: Image/z2.png used on input line 239.
 (pdftex.def)             Requested size: 97.563pt x 101.32175pt.
 
-Overfull \hbox (2.44765pt too wide) in paragraph at lines 267--279
+Overfull \hbox (2.44765pt too wide) in paragraph at lines 272--284
  [][] 
  []
 
@@ -749,36 +747,36 @@ age/z1.png> <./Image/z2.png>]
 File: Image/individual.png Graphic file (type png)
 
 <use Image/individual.png>
-Package pdftex.def Info: Image/individual.png used on input line 296.
+Package pdftex.def Info: Image/individual.png used on input line 301.
 (pdftex.def)             Requested size: 245.71754pt x 136.57904pt.
 
-Overfull \hbox (1.80629pt too wide) in paragraph at lines 296--299
+Overfull \hbox (1.80629pt too wide) in paragraph at lines 301--304
  [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 326--328
+Underfull \hbox (badness 10000) in paragraph at lines 331--333
 
  []
 
 
-LaTeX Warning: Reference `fig:first' on page 5 undefined on input line 329.
+LaTeX Warning: Reference `fig:first' on page 5 undefined on input line 334.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 329--330
+Underfull \hbox (badness 10000) in paragraph at lines 334--335
 
  []
 
-(./ja_discovery.bbl [5 <./Image/individual.png (PNG copy)>]
+[5 <./Image/individual.png (PNG copy)>] (./ja_discovery.bbl
 Underfull \hbox (badness 5147) in paragraph at lines 420--426
 []\OT1/ptm/m/n/10 Robust Ob-ject Track-ing Based on Tracking-Learning-
  []
 
+
+Underfull \vbox (badness 1983) has occurred while \output is active []
+
 Missing character: There is no Â in font ptmr7t!
 Missing character: There is no ’ in font ptmr7t!
-
-Underfull \vbox (badness 1043) has occurred while \output is active []
-
 ) [6]
 (./ja_discovery.aux)
 
@@ -803,7 +801,7 @@ ive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/local/share/texmf-texlive/f
 onts/type1/urw/courier/ucrr8a.pfb></opt/local/share/texmf-texlive/fonts/type1/u
 rw/times/utmb8a.pfb></opt/local/share/texmf-texlive/fonts/type1/urw/times/utmr8
 a.pfb></opt/local/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on ja_discovery.pdf (6 pages, 3112083 bytes).
+Output written on ja_discovery.pdf (6 pages, 3112308 bytes).
 PDF statistics:
  67 PDF objects out of 1000 (max. 8388607)
  39 compressed objects within 1 object stream

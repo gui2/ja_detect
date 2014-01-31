@@ -72,6 +72,8 @@ The plan of the paper is as follows. We begin by describing our dataset, and the
 
 \section{Dataset}
 
+\subsection{Videos}
+
 We make use of a dataset of in-lab caregiver-child play sessions initially described in \citeA{frank2013}. In this dataset, parents were invited to play one-on-one with their children on the floor of a friendly, colorful room. The children wore a small head-mounted (egocentric) camera that captured their approximate visual experience, and a tripod-mounted camera captured the third-person perspective from one corner of the room. Child and caregiver played with a set of toys organized into pairs, with each pair containing a known object (e.g. a ball) and a novel object (e.g. a yellow feather duster). The novel objects were clearly labeled so that parents knew what to call them (e.g. the duster was a ``zem''). For purposes of the current study, we chose a set of FIXME videos containing three eight-month-old children and three sixteen-month-old children. Each video was between FIXME and FIXME minutes long. 
 
 \begin{figure}[t]
@@ -165,7 +167,7 @@ We evaluated the attention chunk method using the larger dataset of 37 egocentri
 
 % The figure \ref{fig:buckets} depicts the temporal duration of the chunks distributed in buckets of 10ms in a log scale. The graph shows that the decay is proportionally symmetric among the different groups, most of the attention chunks are of short duration and there are not "distractors" (i.e. a TV) that interfere with our guided attention towards new objects. 
 
-\subsection{Detection and tracking of moving objects}
+\subsection{Detection and Tracking of Moving Objects}
 
 As described in our earlier work, the vertical field of view of the head-mounted camera is relatively limited ($\sim40^\circ$ visual angle). Thus, to be able to capture faces high in the visual field, the camera must be at a relatively high angle; this angle in turn precludes capturing the objects that the child is holding. Because of this, we made use of the 3rd person static video to detect the objects that were being handled by the child and the caregiver. 
 
@@ -189,7 +191,10 @@ Detection of deformable objects in a colorful, dynamic context is currently an o
 
 \subsubsection{Foreground Modeling}
 
-The goal of foreground modeling is construct and maintain a statistical representation of the scene so that new information (e.g. due to motion) can be accurately extracted. We chose to utilize both texture information and color information when modeling the background. The approach we use \cite{odobez1} exploits the Local Binary Pattern (LBP) feature as a measure of texture because of its good properties \cite{Halika}, along with an illumination invariant photometric distance measure in the RGB space. In brief, this approach computes summary statistics over the static background and searches for local deviations to those summary statistics (due to motion).
+The goal of foreground modeling is to construct and maintain a statistical representation of the scene so that new information (e.g. due to motion) can be accurately extracted. We chose to utilize both texture information and color information when modeling the background. We follow the approach of \citeA{odobez1}, which exploits the Local Binary Pattern (LBP) feature as a measure of texture because of its good properties \cite{Halika}, along with an illumination invariant photometric distance measure in the RGB space. However, we modified the LBP algorithm to include a larger amount of texture from neighboring pixels. In brief, this approach computes summary statistics over the static background and searches for local deviations to those summary statistics (due to motion).
+
+% POSSIBLY ADD MORE SUMMARY?
+
 % The background model ${{B}^{t}(x)}$ of the pixel $x$ at the time $t$ is represented by a list of modes $\{ {m}^{t}_{k}(x)\}_{k=1\dots K}$. The modes register historic information of 7 features of the pixel's color and surrounding texture. 
 % ${m}^{t}_{k} = \{I ,\hat{I},\breve{I}, {LBP}_{k}, w,  \hat{w}, P \}$. 
 % Where ${I}$ represents the average $RGB$ image vector. $\hat{I}$ and $\breve{I}$ are the maximal and minimal $RGB$ image vectors. {LBP} is the vector of local binary patterns computed at this mode.\\
@@ -319,7 +324,7 @@ Child & Age & P & R & F & P & R & F \\
 Total & & & & & & &\\
 \hline
 \end{tabular}
-\caption{Precision, recall, and F-score for classifying JA, listed for each child and across all children.}
+\caption{Precision, recall, and F-score for classifying JA, listed for each child and across all children. ``Attn chunks'' refers to the model where features are propagated across attention chunks; ``independent'' refers to the model where each frame's features are determined independently.}
 \label{tb:Results2}
 \end{table}
 
