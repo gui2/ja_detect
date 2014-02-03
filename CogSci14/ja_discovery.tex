@@ -122,7 +122,7 @@ The primary advantage of the algorithm is the use of motion for face detection: 
 
 \subsubsection{Evaluation}
 
-As part of an ongoing study following \citeA{frank2013}, we evaluated this face detector using a set of 37 egocentric videos gathered in the circumstances described above (with ages ranging from 8 -- 16 months).  Our evaluation compares automatically detected faces with human ground truth annotations over a sample of both high face-density and randomly selected frames. We found that our algorithm had precision of FIXME and recall of FIXME, achieving a relatively high level of accuracy in this challenging dataset. 
+As part of an ongoing study following \citeA{frank2013}, we evaluated this face detector using a set of 37 egocentric videos gathered in the circumstances described above (with ages ranging from 8 -- 16 months).  Our evaluation compares automatically detected faces with human ground truth annotations over a sample of both high face-density and randomly selected frames. We found that our algorithm had precision of .9 and recall of .86, achieving a relatively high level of accuracy in this challenging dataset. 
 
  % .92 and recall of .99; true Negatives = 93; accuracy = 96 outperform the state of the art \cite{dpmface} due to the active-learning stage of the algorithm.\\
 
@@ -259,7 +259,7 @@ In the previous sections we detected and computed features (faces, objects, etc.
 \item Face speed: The speed ($L_{2}$ norm) of the face position at $f_t$ and $f_{t-1}$. 
 \item Face size: The diagonal of the bounding box for the face (a proxy for distance between parent and child).
 \item  Object speed: The speed ($L_{2}$ norm) of the detected object's position at $f_t$ and $f_{t-1}$.    
-\item Object size: The diameter of the ellipse FIXME bounding the detected object.
+\item Object size: The maximum diameter of the ellipse FIXME bounding the detected object.
 \end{enumerate}
 % The lack of detection is replaced by the 0 value.\\ 
 
@@ -309,16 +309,16 @@ Our next analysis used all of the features described above to classify frames as
 \hline
 Child & P & R & A & P & R & A \\
 \hline
-08-01 & .41 & .19 & .67 & 0.45 & 0.08 & 0.69\\
-08-05 & .63 & .45 & .86 & 0.48 & 0.18 & 0.67  \\
-08-07 & .47 & .94 & .95 & 0.22 & 0.14 & 0.94  \\
-08-11 & .64 & .44 & .80 & 0.60 & 0.15 & 0.77  \\
-08-15 & .74 & .80 & .95 & 0.47 & 0.12 & 0.90 \\
-16-04 & .42 & .86 & .96 & 0.21 & 0.21 & 0.95 \\
-16-12 & .56 & .80 & .55 & 0.54 & 0.93 & 0.54 \\
-16-22 & .54 & .54 & .89 & 0.45 & 0.27 & 0.87  \\
-16-35 & .38 & .53 & .93 & 0.34 & 0.28 & 0.93\\
-
+08-01 & .41 & .19 & .67 & .45 & .08 & .69\\
+08-05 & .63 & .45 & .86 & .48 & .18 & .67  \\
+08-07 & .47 & .94 & .95 & .22 & .14 & .94  \\
+08-11 & .64 & .44 & .80 & .60 & .15 & .77  \\
+08-15 & .74 & .80 & .95 & .47 & .12 & .90 \\
+16-04 & .42 & .86 & .96 & .21 & .21 & .95 \\
+16-12 & .56 & .80 & .55 & .54 & .93 & .54 \\
+16-22 & .54 & .54 & .89 & .45 & .27 & .87  \\
+16-35 & .38 & .53 & .93 & .34 & .28 & .93\\
+% original Right side
 %08-05 & .63 & .45 & .86 & & & \\
 %08-07 & .47 & .94 & .95 & & & \\
 %08-11 & .64 & .44 & .80 & & & \\
@@ -342,7 +342,7 @@ Results for individual children and aggregate results are shown in Table \ref{ta
 
 We additionally examined the feature weights learned by the classifier. Figure \ref{fig:main}B shows average weights on each of the six features. We see very little difference in weight for attention chunk length and speed, suggesting that these characteristics of the chunks did not differ within JA episodes. The most positive weight is given to the object features (especially object speed---which perhaps acted as a proxy for engagement with the object), congruent with the independent feature analyses. Weights for face features mismatched the independent feature analysis, however, with \emph{less} weight given to faces inside JA episodes. 
 
-FIXME We evaluate the same approach removing the attention chunk shrinking and propagation step. The accuracy of the classifier dropped down an average of 7\% in accuracy. 
+We evaluate the same approach removing the attention chunk propagation step. The evaluation metrics of the classifier dropped down in most of the experiments. The results show sustained attention as an important descriptor of JA, and further optimizations of the attention chunk detector could improve the JA detector.%FIXME We evaluate the same approach removing the attention chunk shrinking and propagation step. The accuracy of the classifier dropped down an average of 7\% in accuracy. 
 
 \section{Conclusions}
 
