@@ -123,9 +123,6 @@ The primary advantage of the algorithm is the use of motion for face detection: 
 
 As part of an ongoing study following \citeA{frank2013}, we evaluated this face detector using a set of 37 egocentric videos gathered in the circumstances described above (with ages ranging from 8 -- 16 months).  Our evaluation compares automatically detected faces with human ground truth annotations over a sample of both high face-density and randomly selected frames. We found that our algorithm had precision of .90 and recall of .86, achieving a relatively high level of accuracy in this challenging dataset. 
 
- % .92 and recall of .99; true Negatives = 93; accuracy = 96 outperform the state of the art \cite{dpmface} due to the active-learning stage of the algorithm.\\
-
-
 
 %%%%%% ATTENTION MOTION  ATTENTION CHUNKS
 \subsection{Detecting Episodes of Static Attention}
@@ -137,7 +134,7 @@ One important aspect of joint attention is that it should be (relatively) static
 % . The concept can be a concrete object (face, toy, etc.) or an abstract texture captured by the camera when the child's gaze is attending to an off-scope object (e.g. the child is handling a toy near his chest). The ideal case is to have eye trackers to understand the gaze of the baby, but such a configuration is very hard to achieve in uncontrolled environments. Thus, we use the head-cam information as a gaze estimator. Our 
 
 
-The algorithm is initializes by modeling a pixel-texture patch ($P_{i}$). For each new frame the algorithm will seek for a similar patch to the one observed in the previous frame. If the patch is matched, a new point is added to the patch trajectory. If the matching is not achieved, a new patch ($P_{i+1}$) is learned and the tracking algorithm is re-initialized. The base algorithm used for tracking is a version of a ``tracking by detection'' algorithm \cite{kalal2012}. A chunk is defined as the video segment defined by the $start_{P}$ and $end_{P}$ frames of the tacked patch trajectory.
+The algorithm is initializes by modeling a pixel-texture patch ($P_{i}$). For each new frame the algorithm will seek for a similar patch to the one observed in the previous frame. If the patch is matched, a new point is added to the patch trajectory. If the matching is not achieved, a new patch ($P_{i+1}$) is learned and the tracking algorithm is re-initialized. The base algorithm used for tracking is a version of the ``tracking by detection'' algorithm used above \cite{kalal2012}. A chunk is defined as the video segment defined by the $start_{P}$ and $end_{P}$ frames of the tacked patch trajectory.
 
 % The figure \ref{fig:chunk} describes the basics of an attention chunk computation.\\
 % \begin{figure}[h]
@@ -157,14 +154,14 @@ The algorithm is initializes by modeling a pixel-texture patch ($P_{i}$). For ea
         %    \label{fig:duration}
         %    }
         %    \subfigure[Duration of the attentional chunks distributed in buckets of 10ms and displayed in log scale (i.e. longer chunks appear to the right).]{%
-           \includegraphics[width=1\linewidth]{Image/attention.eps}    \label{fig:buckets}
+           \includegraphics[width=3.4in]{Image/attention_mod.pdf} \label{fig:buckets}
             % }
-\caption{The distribution --log scale-- of attention chunk lengths for 8, 12, and 16 month old children. The younger (8 month old) children show longer attention fixation episodes compared to the other two groups. The decay of the curves indicates the lack of distractors (e.g. TV) that could capture the children's attention.}
+\caption{The binned distribution of attention chunk lengths for 8-, 12-, and 16-month-old children. Fixation time and proportion are both plotted on a log scale, because most fixations are very short. The younger (8 month old) children show longer attention fixation episodes compared to the other two groups. A very small number of chunks longer than 10s are not shown.}
 \label{fig:chunks}
 \end{center}
 \end{figure}
 
-We evaluated the attention chunk method using the larger dataset of 37 egocentric videos. Average chunk duration is shown in Figure \ref{fig:chunks}. The method yielded a distribution that included many very short chunks (presumably while the head was in motion) as well as some longer episodes of attention. We additionally found that the younger children in the sample (8 months) attended somewhat longer on average. We speculate that this pattern is due to the older children's greater autonomy and mobility. 
+We evaluated the attention chunk method using the larger dataset egocentric videos. The distribution of chunk durations is shown in Figure \ref{fig:chunks}. The method yielded a distribution that included many very short chunks (presumably while the head was in motion) as well as some longer episodes of attention. We additionally found that the younger children in the sample (8 months) had somewhat more long attention chunks; we speculate that this pattern is due to the older children's greater autonomy and mobility. 
 
 % The figure \ref{fig:buckets} depicts the temporal duration of the chunks distributed in buckets of 10ms in a log scale. The graph shows that the decay is proportionally symmetric among the different groups, most of the attention chunks are of short duration and there are not "distractors" (i.e. a TV) that interfere with our guided attention towards new objects. 
 
@@ -178,7 +175,6 @@ As described in our earlier work, the vertical field of view of the head-mounted
 
 Detection of deformable objects in a colorful, dynamic context is currently an open challenge for computer vision algorithms. Our data contained a wide variety of deformations due to the child-friendly nature of the objects and the consistent occlusion of parts of the objects by caregivers' and children's hands.  To circumvent this difficult challenge, we made use of motion as a convenient, psychologically-inspired ``filter.'' Objects that are in motion are more likely to be attended by the child and/or caregiver; in addition, considering only those pixels that are in motion significantly constrains the object-detection problem (Figure \ref{fig:objects}). 
 
-%For that we make extensive use of local binary patterns as texture descriptors.
 \begin{figure}[t]
      \begin{center}
           \subfigure[Object of interest (marked by the yellow square) could be confused with other objects with similar textures and colors (marked in red). Considering only pixels that are in motion effectively filters these distractors.]{
@@ -192,39 +188,13 @@ Detection of deformable objects in a colorful, dynamic context is currently an o
 
 \subsubsection{Foreground Modeling}
 
-The goal of foreground modeling is to construct and maintain a statistical representation of the scene so that new information (e.g. due to motion) can be accurately extracted. We chose to utilize both texture information and color information when modeling the background. We follow the approach of \citeA{odobez1}, which exploits the Local Binary Pattern (LBP) feature as a measure of texture because of its good properties \cite{Halika}, along with an illumination invariant photometric distance measure in the RGB space. However, we modified the LBP algorithm to include a larger amount of texture from neighboring pixels. In brief, this approach computes summary statistics over the static background and searches for local deviations to those summary statistics (due to motion).
+The goal of foreground modeling is to construct and maintain a statistical representation of the scene so that new information can be accurately extracted. We chose to utilize both texture information and color information when modeling the background. We follow the approach of \citeA{odobez1}, which exploits the Local Binary Pattern (LBP) feature as a measure of texture because of its good properties \cite{Halika}, along with an illumination invariant photometric distance measure in the RGB space. However, we modified the LBP algorithm to include a larger amount of texture from neighboring pixels. In brief, this approach computes summary statistics over the background and searches for local deviations to those summary statistics (due to motion).
 
-% POSSIBLY ADD MORE SUMMARY?
-
-% The background model ${{B}^{t}(x)}$ of the pixel $x$ at the time $t$ is represented by a list of modes $\{ {m}^{t}_{k}(x)\}_{k=1\dots K}$. The modes register historic information of 7 features of the pixel's color and surrounding texture. 
-% ${m}^{t}_{k} = \{I ,\hat{I},\breve{I}, {LBP}_{k}, w,  \hat{w}, P \}$. 
-% Where ${I}$ represents the average $RGB$ image vector. $\hat{I}$ and $\breve{I}$ are the maximal and minimal $RGB$ image vectors. {LBP} is the vector of local binary patterns computed at this mode.\\
-% The background model can learn up to $K^{max}$ different modes. For each new $I^{t}$ and $LBP^{t}$ a new mode is computed $m^{t-1}_{k}$ and the algorithm seeks to which learned mode $m^{t-1}_{k}$ the new mode maps to. The mapping is achieved by thresholding a distance (i.e $\tilde{k} = \underset{{k}}{\arg\min} ~ D(m^{t-1}_{k},m^{t}_{k})$). 1) If the new mode cannot be mapped to any of the learned ones and there is still space in the buffer ($K $\textless$ K^{max}$), then a new mode is initialized. 2) If there is a matched mode $m^{t-1}_{\tilde{k}}$, its representation is updated as follows:
-% \begin{equation}
-%    \begin{cases} 
-%      \breve{I}_{\tilde{k}}^{t} = min (I^{t}, (1 + \beta) \breve{I}_{\tilde{k}}^{t-1}), \\
-%      \hat{I}_{\tilde{k}}^{t} = max (I^{t}, (1 - \beta) \hat{I}_{\tilde{k}}^{t-1}), \\
-%      {I}_{\tilde{k}}^{t} = (1 + \alpha) {I}_{\tilde{k}}^{t-1} + \alpha	{I}^{t}, \\
-%      {LBP}_{\tilde{k}}^{t} = (1 + \alpha) {LBP}_{\tilde{k}}^{t-1} + \alpha	{LBP}^{t}, \\
-%      (*)w^{t}_{\tilde k}= (1 - \alpha^{i}_{w}) {w}_{\tilde{k}}^{t-1} + \alpha^{i}_{w},\\ ~~~ ~~~ ~~~ \alpha^{i}_{w}=\alpha_{w}(1+\tau\hat{w}^{t-1}_{k}) \\
-%      \hat{w}^{t}_{\tilde{k}} = max (\hat{w}^{t-1}_{\tilde{k}}, w^{t}_{\tilde{k}})\\
-%      L^{t}_{\tilde{k}} = 1+ max \{L^{t-1}_{k}\}_{k=1,\dots,K, k \neq \tilde{k}},\\ ~~~ ~~~ ~~~ if~~ L^{t}_{\tilde{k}}~=~0~and~T_{bw} $\textless$\hat{w}_{\tilde{k}}^{t} \\
-%    \end{cases} 
-% \end{equation}
-
-% where $\beta \in [0,1)$ is the learning rate of the min and max color vectors and $\alpha \in [0,1)$ is the learning rate of the color and texture information. The non matching modes of the previous model are assigned to the new model (i.e. $m^{t}{k}:=m^{t-1}{k}$ ) but their weights are decreased according to (*).
-% \\
-% After the update step, all nodes are sorted decreasingly according to their weight. And the background modes are the first $B^{t}$ modes that satisfy:
-% \begin {equation}\sum_{k=1}^{B^{t}} w_{k}^{t} / \sum_{k=1}^{K^{t}} w_{k}^{t} < TB \end{equation} where $TB  \in [0,1]$ is the background threshold.
-% Due to the use of both color and texture in this computation, the chances that moving foreground objects generate a consistent mode over time (and hence are filtered out) is quite small.
+\vspace{1ex}
 
 \subsubsection{Object Tracking}
 
-We used the extracted foreground pixels as the input to object-tracking algorithms. 
-% We are interested in detecting a tracking a set of objects (i.e. toys) components of triad when the parents and children are engaged in a JA episode. In particular the toys are being manipulated. The detection and tracking objects is performed over the foreground image. 
-We experimented with a number of appearance-based object detectors with relatively poor results \cite{kalal2012}. Our solution was to detect and track objects by their color and relative size. We modified the cam-shift algorithm \cite{bradski1998b}, a specialization of the mean-shift algorithm.
- % \cite{Meer2002}
-Mean shift is a non-parametric technique that climbs the gradient of a probability distribution to find the nearest dominant mode (peak). In our case, this distribution is based in color values. The algorithm is initialized by selecting a region containing the object of interest and building a color histogram over the region. In a new frame, the algorithm will match the region's size and the peaks of the color distribution using both mean-shift and euclidean distance metrics. Figure \ref{fig:track} shows examples of the detection and tracking of two different objects.
+We used the extracted foreground pixels as the input to object-tracking algorithms and experimented with a number of appearance-based object detectors with relatively poor results. Our solution was to detect and track objects by their color and relative size. We modified the cam-shift algorithm \cite{bradski1998b}, a specialization of the mean-shift algorithm. Mean shift is a non-parametric technique that climbs the gradient of a probability distribution to find the nearest dominant mode (peak). In our case, this distribution is based in color values. The algorithm is initialized by selecting a region containing the object of interest and building a color histogram over the region. In a new frame, the algorithm will match the region's size and the peaks of the color distribution using both mean-shift and euclidean distance metrics. Figure \ref{fig:track} shows examples.
 
 \begin{figure}[t]
      \begin{center}
@@ -348,7 +318,6 @@ We evaluate the same approach while removing the attention chunk propagation ste
 ``Joint attention'' (JA) is an important construct in understanding children's social interactions with their caregiver. Yet this construct is often defined from the perspective of a knowledgeable third-person observer. Such definitions have both psychological and practical consequences. Psychologically, a growing body of evidence suggests that children may not always have access to their parents' gaze \cite{franchak2011,yu2013,frank2013}, and so they may have to infer whether they are in joint attention from a host of noisy signals \cite{frank2013b}. Practically, identifying JA in large datasets using automated methods may be exceedingly difficult. 
 
 In the current paper, we looked for other features that were related to JA. Two findings emerged from our analysis. First, the motion of an object is a simple but highly diagnostic cue to JA---more so than the presence of the caregiver's face. Second, the propagation of features across the ``attention chunks'' that we identified improved our classification accuracy, suggesting that they carried some information about the child's sustained attention. These findings suggest that, with further development, automated analysis of joint attention from video may be possible in the future. 
-
 
 \bibliographystyle{apacite}
 
