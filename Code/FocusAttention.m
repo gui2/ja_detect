@@ -107,9 +107,6 @@ for file = files'
 end
 
 
-load 'chunksanalysis.mat'
-
-
 figure;
 clf;
 hold on 
@@ -214,8 +211,8 @@ cols= {'b','g','r'};
  axis([-1 20 0.000001 1.1])
 
 legend('8 months','12 months','16 months')
-ylabel('Fixation time (s)','FontSize',15)
-xlabel('Proportion fixations','FontSize',15)
+xlabel('Fixation time (s)','FontSize',15)
+ylabel('Proportion fixations','FontSize',15)
 
 %% now aggregate all of these by age
 mlen = [mean(mlens(ages==8)) ...
