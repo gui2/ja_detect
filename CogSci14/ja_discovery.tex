@@ -159,7 +159,7 @@ The algorithm is initializes by modeling a pixel-texture patch ($P_{i}$). For ea
         %    \subfigure[Duration of the attentional chunks distributed in buckets of 10ms and displayed in log scale (i.e. longer chunks appear to the right).]{%
            \includegraphics[width=1\linewidth]{Image/attention.eps}    \label{fig:buckets}
             % }
-\caption{The distribution of attention chunk lengths for 8, 12, and 16 month old children. FIXME}
+\caption{The distribution --log scale-- of attention chunk lengths for 8, 12, and 16 month old children. The younger (8 month old) children show longer attention fixation episodes compared to the other two groups. The decay of the curves indicates the lack of distractors (e.g. TV) that could capture the children's attention.}
 \label{fig:chunks}
 \end{center}
 \end{figure}
@@ -258,7 +258,7 @@ In the previous sections we detected and computed features (faces, objects, etc.
 \item Face speed: The speed ($L_{2}$ norm) of the face position at $f_t$ and $f_{t-1}$. 
 \item Face size: The diagonal of the bounding box for the face (a proxy for distance between parent and child).
 \item  Object speed: The speed ($L_{2}$ norm) of the detected object's position at $f_t$ and $f_{t-1}$.    
-\item Object size: The maximum diameter of the ellipse FIXME bounding the detected object.
+\item Object size: The maximum diameter of the ellipse containing the pixels of the detected object.
 \end{enumerate}
 % The lack of detection is replaced by the 0 value.\\ 
 

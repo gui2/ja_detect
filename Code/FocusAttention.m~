@@ -1,7 +1,7 @@
 clear all;
 close all;
 % path='../Data/results-context/';
-% pathtoread='../results-context/*.txt';
+% pathtoread='../Data/results-context/*.txt';
 % files = dir(pathtoread);
 % feames_index=1;
 % k=1;
@@ -106,10 +106,7 @@ close all;
 %         fclose(gtfile);
 % end
 
-
 load 'chunksanalysis.mat'
-
-
 figure;
 clf;
 hold on 
@@ -145,8 +142,6 @@ for i = 1:length(lens)
     these_lens = lens{i};
     mlens(i) = mean(lens{i});
     medlens(i) = median(lens{i});
-    %e = std(y)*ones(size(x));
-    % these_lens = these_lens(these_lens > 1);
     subplot(6,6,i)
     cla
     bins = [0:.2:2];
@@ -207,15 +202,11 @@ clf
 loglog(bins,ms,'-o','LineWidth',2)
 hold on
 cols= {'b','g','r'};
-% for i=1:3
-%     errorbar(bins+bins*i*.02,ms(i,:),ms(i,:)-mse(i,:),ms(i,:)+mse(i,:),...
-%         [cols{i} '.'],'MarkerSize',0.1)
-% end
  axis([-1 20 0.000001 1.1])
 
 legend('8 months','12 months','16 months')
-ylabel('Fixation time (s)','FontSize',15)
-xlabel('Proportion fixations','FontSize',15)
+xlabel('Fixation time (s)','FontSize',15)
+ylabel('Proportion fixations','FontSize',15)
 
 %% now aggregate all of these by age
 mlen = [mean(mlens(ages==8)) ...
